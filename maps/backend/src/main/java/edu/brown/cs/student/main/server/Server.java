@@ -45,7 +45,7 @@ public class Server {
         });
 
     //actual geojson filepath
-    String filepath = "C:\\Users\\prana\\Documents\\GitHub\\maps-prlakshm-tbonas\\maps\\backend\\data\\geojson\\fullDownload.geojson";
+    String filepath = "maps/backend/data/geojson/fullDownload.geojson";
 
     // Setting up the handler for the GET /order and /mock endpoints
     Spark.get("loadcsv", new LoadCsvHandler(csvData));

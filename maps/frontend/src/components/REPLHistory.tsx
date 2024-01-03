@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/main.css";
 import { HistoryItem } from "../types/HistoryItem";
 
@@ -17,7 +18,15 @@ interface REPLHistoryProps {
  */
 export function REPLHistory(props: REPLHistoryProps) {
   const { commandHistory, mode, commandResultMap, ariaLabel } = props;
+  const [showInstructions, setShowInstructions] = useState(false);
 
+  const toggleInstructions = () => {
+    setShowInstructions(!showInstructions);
+  };
+
+  const closeInstructions = () => {
+    setShowInstructions(false);
+  };
   /**
    * Function for rendering different types of data in the command history.
    * @param {[[]] | string} data - The data to be rendered.
@@ -52,7 +61,34 @@ export function REPLHistory(props: REPLHistoryProps) {
 
   return (
     <div className="repl-history" aria-live="polite" aria-label={ariaLabel}>
-      <h2 aria-live="polite">Command History</h2>
+      <h2 aria-live="polite" onClick={toggleInstructions}>
+        Command History
+      </h2>
+
+      {showInstructions && (
+        <div className="instructions-dropdown">
+          <p>Command Instructions:</p>
+          <ul>
+            <li>
+              <span style={{ color: "mediumorchid" }}>
+                "broadband [state] [county]"
+              </span>{" "}
+              to get broadband access percent county in state
+            </li>
+            <li>
+              <span style={{ color: "mediumorchid" }}>
+                "searchareas [keyword]"
+              </span>{" "}
+              to search by area descriptions
+            </li>
+            <li><span style={{ color: "mediumorchid" }}>"mode brief"</span> to display
+          only history output</li>
+          <li><span style={{ color: "mediumorchid" }}>"mode verbose"</span> to display
+          history command and output</li>
+          </ul>
+        </div>
+      )}
+
       <ul>
         {commandHistory.map((command, index) => (
           <div key={index} className="history-element">

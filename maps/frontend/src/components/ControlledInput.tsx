@@ -30,7 +30,7 @@ export function ControlledInput({
       type="text"
       className="repl-command-box"
       value={value} // Bind the input's value to the provided 'value' prop.
-      placeholder="Enter command here!"
+      placeholder="Click &quot;Command History&quot; to see possible commands!"
       onChange={(ev) => setValue(ev.target.value)} // Update the input's value when it changes.
       onKeyDown={onKeyDown} // Handle keydown events if the 'onKeyDown' prop is provided.
       aria-label={ariaLabel} // Set the accessibility label for screen readers.

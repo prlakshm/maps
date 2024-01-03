@@ -1,9 +1,16 @@
 # maps-prlakshm-tbonas
 
-Team members and contributions:
-Thalia Bonas (tbonas) and Pranavi (prlakshm)
-Repo link: https://github.com/cs0320-f23/maps-prlakshm-tbonas
-Estimated completion time: 30 hours
+**Project Name:** Maps
+
+**Team Members and Contributions:** 
+<br>Thalia Bonas (frontend) 
+<br>Pranavi Lakshminarayanan (frontend and backend) 
+<br>Julia Zdzilowska (frontend and backend)
+<br>Sarah Ridley (backend)
+
+<br>**Link to Deployed Webpage:** https://github.com/cs0320-f23/maps-prlakshm-tbonas
+
+<br>**Estimated Completion Time:** 30 hours
 
 ### 1. Functionality/Design
 

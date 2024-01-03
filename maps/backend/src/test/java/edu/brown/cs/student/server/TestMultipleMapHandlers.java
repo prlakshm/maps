@@ -35,8 +35,8 @@ public class TestMultipleMapHandlers {
 
 
   //filepaths to geojsons
-  final static String ACTUAL_PATH = "C:\\Users\\prana\\Documents\\GitHub\\maps-prlakshm-tbonas\\maps\\backend\\data\\geojson\\fullDownload.geojson";
-  final static String MOCK_PATH = "C:\\Users\\prana\\Documents\\GitHub\\maps-prlakshm-tbonas\\maps\\backend\\data\\geojson\\mocked.geojson";
+  final static String ACTUAL_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\fullDownload.geojson";
+  final static String MOCK_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\mocked.geojson";
 
   // Setup method executed before each test
   @BeforeEach

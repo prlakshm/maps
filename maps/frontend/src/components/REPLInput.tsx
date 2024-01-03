@@ -324,7 +324,7 @@ export function REPLInput(props: REPLInputProps) {
   return (
     <div className="repl-input" aria-live="polite" aria-label={ariaLabel}>
       <fieldset>
-        <legend>Enter a command:</legend>
+        <legend style={{ marginBottom: '10px' }}>Enter a command:</legend>
         <ControlledInput
           value={commandString}
           setValue={setCommandString}
@@ -335,6 +335,7 @@ export function REPLInput(props: REPLInputProps) {
       <button
         aria-label="repl-input-submit-button"
         onClick={() => handleSubmit(commandString)}
+        style={{ marginTop: '8px' }}
       >
         Submit
       </button>

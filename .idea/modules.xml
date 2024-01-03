@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/maps-prlakshm-tbonas.iml" filepath="$PROJECT_DIR$/.idea/maps-prlakshm-tbonas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/maps/backend/s0.iml" filepath="$PROJECT_DIR$/maps/backend/s0.iml" />
     </modules>
   </component>
 </project>

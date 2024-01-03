@@ -34,8 +34,7 @@ public class TestMapsHelpers {
     final static int INDEX_UPPER_BOUND = 8878; // Size of geolength features in JSON
 
     //filepaths to geojsons
-    final static String ACTUAL_PATH = "C:\\Users\\prana\\Documents\\GitHub\\maps-prlakshm-tbonas\\maps\\backend\\data\\geojson\\fullDownload.geojson";
-
+    final static String ACTUAL_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\fullDownload.geojson";
     // Variables for test setup
     private static FeatureCollection featureCollection;
     private static BoundaryBoxHandler boundaryBoxHandler;
