@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StaleMockCensusSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.sources.mocks</a> &gt; <span class="el_source">StaleMockCensusSource.java</span></div><h1>StaleMockCensusSource.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.sources.mocks;
+
+import edu.brown.cs.student.main.sources.CensusData;
+import edu.brown.cs.student.main.sources.CensusSource;
+import edu.brown.cs.student.main.sources.DataSourceException;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * The StaleMockCensusSource class implements the CensusSource interface and overrides its
+ * getBroadbandAccess method. An object of this class is constructed with nothing, but in the
+ * constructor, the field broadbandAccess is filled with stale ACS broadband data from 9/25/23 in
+ * North Carolina and Rhode Island. When the getBroadbandAccess method is called, an object of this
+ * class returns the stale broadband access data if the given state and county combination exists in
+ * North Carolina or Rhode Island. Otherwise, this source returns a DataSourceException.
+ *
+ * &lt;p&gt;This mock class enables us to test our /broadband handler without making many repeated calls
+ * to an object of the AcsCensusSource class, which makes real requests to the census API.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class StaleMockCensusSource implements CensusSource {
+
+  private final HashMap&lt;String, String&gt; broadbandAccess;
+
+  /**
+   * The constructor for the StateMockCensusSource class, which fills the broadbandAccess field with
+   * stale data from 9/25/23 for North Carolina and Rhode Island counties.
+   */
+<span class="fc" id="L31">  public StaleMockCensusSource() {</span>
+<span class="fc" id="L32">    List&lt;List&lt;String&gt;&gt; stateData =</span>
+<span class="fc" id="L33">        List.of(</span>
+<span class="fc" id="L34">            List.of(&quot;NAME&quot;, &quot;S2802_C03_022E&quot;, &quot;state&quot;, &quot;county&quot;),</span>
+<span class="fc" id="L35">            List.of(&quot;Alamance County, North Carolina&quot;, &quot;83.8&quot;, &quot;37&quot;, &quot;001&quot;),</span>
+<span class="fc" id="L36">            List.of(&quot;Burke County, North Carolina&quot;, &quot;80.5&quot;, &quot;37&quot;, &quot;023&quot;),</span>
+<span class="fc" id="L37">            List.of(&quot;Catawba County, North Carolina&quot;, &quot;81.4&quot;, &quot;37&quot;, &quot;035&quot;),</span>
+<span class="fc" id="L38">            List.of(&quot;Lincoln County, North Carolina&quot;, &quot;88.6&quot;, &quot;37&quot;, &quot;109&quot;),</span>
+<span class="fc" id="L39">            List.of(&quot;Nash County, North Carolina&quot;, &quot;80.7&quot;, &quot;37&quot;, &quot;127&quot;),</span>
+<span class="fc" id="L40">            List.of(&quot;Onslow County, North Carolina&quot;, &quot;87.0&quot;, &quot;37&quot;, &quot;133&quot;),</span>
+<span class="fc" id="L41">            List.of(&quot;Randolph County, North Carolina&quot;, &quot;84.5&quot;, &quot;37&quot;, &quot;151&quot;),</span>
+<span class="fc" id="L42">            List.of(&quot;Robeson County, North Carolina&quot;, &quot;69.2&quot;, &quot;37&quot;, &quot;155&quot;),</span>
+<span class="fc" id="L43">            List.of(&quot;Union County, North Carolina&quot;, &quot;92.1&quot;, &quot;37&quot;, &quot;179&quot;),</span>
+<span class="fc" id="L44">            List.of(&quot;Wayne County, North Carolina&quot;, &quot;85.8&quot;, &quot;37&quot;, &quot;191&quot;),</span>
+<span class="fc" id="L45">            List.of(&quot;Brunswick County, North Carolina&quot;, &quot;94.4&quot;, &quot;37&quot;, &quot;019&quot;),</span>
+<span class="fc" id="L46">            List.of(&quot;Buncombe County, North Carolina&quot;, &quot;83.6&quot;, &quot;37&quot;, &quot;021&quot;),</span>
+<span class="fc" id="L47">            List.of(&quot;Cabarrus County, North Carolina&quot;, &quot;88.0&quot;, &quot;37&quot;, &quot;025&quot;),</span>
+<span class="fc" id="L48">            List.of(&quot;Caldwell County, North Carolina&quot;, &quot;76.4&quot;, &quot;37&quot;, &quot;027&quot;),</span>
+<span class="fc" id="L49">            List.of(&quot;Carteret County, North Carolina&quot;, &quot;90.4&quot;, &quot;37&quot;, &quot;031&quot;),</span>
+<span class="fc" id="L50">            List.of(&quot;Chatham County, North Carolina&quot;, &quot;88.4&quot;, &quot;37&quot;, &quot;037&quot;),</span>
+<span class="fc" id="L51">            List.of(&quot;Cleveland County, North Carolina&quot;, &quot;72.0&quot;, &quot;37&quot;, &quot;045&quot;),</span>
+<span class="fc" id="L52">            List.of(&quot;Craven County, North Carolina&quot;, &quot;79.1&quot;, &quot;37&quot;, &quot;049&quot;),</span>
+<span class="fc" id="L53">            List.of(&quot;Cumberland County, North Carolina&quot;, &quot;87.6&quot;, &quot;37&quot;, &quot;051&quot;),</span>
+<span class="fc" id="L54">            List.of(&quot;Davidson County, North Carolina&quot;, &quot;85.2&quot;, &quot;37&quot;, &quot;057&quot;),</span>
+<span class="fc" id="L55">            List.of(&quot;Durham County, North Carolina&quot;, &quot;90.0&quot;, &quot;37&quot;, &quot;063&quot;),</span>
+<span class="fc" id="L56">            List.of(&quot;Forsyth County, North Carolina&quot;, &quot;85.7&quot;, &quot;37&quot;, &quot;067&quot;),</span>
+<span class="fc" id="L57">            List.of(&quot;Franklin County, North Carolina&quot;, &quot;85.8&quot;, &quot;37&quot;, &quot;069&quot;),</span>
+<span class="fc" id="L58">            List.of(&quot;Gaston County, North Carolina&quot;, &quot;78.4&quot;, &quot;37&quot;, &quot;071&quot;),</span>
+<span class="fc" id="L59">            List.of(&quot;Guilford County, North Carolina&quot;, &quot;89.2&quot;, &quot;37&quot;, &quot;081&quot;),</span>
+<span class="fc" id="L60">            List.of(&quot;Harnett County, North Carolina&quot;, &quot;76.5&quot;, &quot;37&quot;, &quot;085&quot;),</span>
+<span class="fc" id="L61">            List.of(&quot;Henderson County, North Carolina&quot;, &quot;86.3&quot;, &quot;37&quot;, &quot;089&quot;),</span>
+<span class="fc" id="L62">            List.of(&quot;Iredell County, North Carolina&quot;, &quot;89.8&quot;, &quot;37&quot;, &quot;097&quot;),</span>
+<span class="fc" id="L63">            List.of(&quot;Johnston County, North Carolina&quot;, &quot;83.1&quot;, &quot;37&quot;, &quot;101&quot;),</span>
+<span class="fc" id="L64">            List.of(&quot;Mecklenburg County, North Carolina&quot;, &quot;89.6&quot;, &quot;37&quot;, &quot;119&quot;),</span>
+<span class="fc" id="L65">            List.of(&quot;Moore County, North Carolina&quot;, &quot;81.3&quot;, &quot;37&quot;, &quot;125&quot;),</span>
+<span class="fc" id="L66">            List.of(&quot;New Hanover County, North Carolina&quot;, &quot;89.2&quot;, &quot;37&quot;, &quot;129&quot;),</span>
+<span class="fc" id="L67">            List.of(&quot;Orange County, North Carolina&quot;, &quot;89.1&quot;, &quot;37&quot;, &quot;135&quot;),</span>
+<span class="fc" id="L68">            List.of(&quot;Pitt County, North Carolina&quot;, &quot;75.5&quot;, &quot;37&quot;, &quot;147&quot;),</span>
+<span class="fc" id="L69">            List.of(&quot;Rockingham County, North Carolina&quot;, &quot;74.7&quot;, &quot;37&quot;, &quot;157&quot;),</span>
+<span class="fc" id="L70">            List.of(&quot;Rowan County, North Carolina&quot;, &quot;85.8&quot;, &quot;37&quot;, &quot;159&quot;),</span>
+<span class="fc" id="L71">            List.of(&quot;Surry County, North Carolina&quot;, &quot;80.6&quot;, &quot;37&quot;, &quot;171&quot;),</span>
+<span class="fc" id="L72">            List.of(&quot;Wake County, North Carolina&quot;, &quot;92.0&quot;, &quot;37&quot;, &quot;183&quot;),</span>
+<span class="fc" id="L73">            List.of(&quot;Wilkes County, North Carolina&quot;, &quot;77.6&quot;, &quot;37&quot;, &quot;193&quot;),</span>
+<span class="fc" id="L74">            List.of(&quot;Wilson County, North Carolina&quot;, &quot;71.9&quot;, &quot;37&quot;, &quot;195&quot;),</span>
+<span class="fc" id="L75">            List.of(&quot;Kent County, Rhode Island&quot;, &quot;84.1&quot;, &quot;44&quot;, &quot;003&quot;),</span>
+<span class="fc" id="L76">            List.of(&quot;Providence County, Rhode Island&quot;, &quot;85.4&quot;, &quot;44&quot;, &quot;007&quot;),</span>
+<span class="fc" id="L77">            List.of(&quot;Newport County, Rhode Island&quot;, &quot;90.1&quot;, &quot;44&quot;, &quot;005&quot;),</span>
+<span class="fc" id="L78">            List.of(&quot;Washington County, Rhode Island&quot;, &quot;92.8&quot;, &quot;44&quot;, &quot;009&quot;));</span>
+<span class="fc" id="L79">    broadbandAccess = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    for (List&lt;String&gt; row : stateData) {</span>
+<span class="fc" id="L81">      broadbandAccess.put(row.get(0), row.get(1));</span>
+    }
+<span class="fc" id="L83">  }</span>
+
+  /**
+   * A method that returns a CensusData object representing the stale broadband access level from
+   * 9/25/23 for a state / county combination in North Carolina or Rhode Island. Otherwise, throws a
+   * DataSourceException.
+   *
+   * @param state the String representing the state query parameter from the handler
+   * @param county the String representing the county query parameter from the handler
+   * @return CensusData object containing a Double representing the stale broadband access level
+   * @throws DataSourceException if the state / county combination does not exist in NC or RI
+   */
+  @Override
+  public CensusData getBroadbandAccess(String state, String county) throws DataSourceException {
+<span class="fc" id="L97">    String fullCountyName = county + &quot; County, &quot; + state;</span>
+<span class="fc" id="L98">    String response = broadbandAccess.get(fullCountyName);</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (response == null) {</span>
+<span class="fc" id="L100">      throw new DataSourceException(&quot;County &quot; + county + &quot; in state &quot; + state + &quot; was not found.&quot;);</span>
+    }
+<span class="fc" id="L102">    return new CensusData(Double.valueOf(response));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Server.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.server</a> &gt; <span class="el_source">Server.java</span></div><h1>Server.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.server;
+
+import static spark.Spark.after;
+
+import com.google.common.cache.CacheBuilder;
+import edu.brown.cs.student.main.sources.AcsCensusSource;
+import edu.brown.cs.student.main.sources.CensusSource;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import spark.Spark;
+
+/**
+ * The top-level class for our Server project. Contains the main() method which starts Spark and
+ * runs the various handlers for our four endpoints: /loadcsv, /viewcsv, /searchcsv, /broadband.
+ *
+ * &lt;p&gt;These four endpoints need to share state, so they share the csvData object of type
+ * CsvDataWrapper. This wrapper allows for dependency injection, as well as defensive programming,
+ * as its get method to access the actual List of List of String representing rows of CSV data
+ * returns an unmodifiable copy of said data.
+ *
+ * &lt;p&gt;Also allows a developer using these endpoints to create their own CacheBuilder, or pass a null
+ * CacheBuilder to the constructor, to specify how they want responses from the source to be cached,
+ * or for responses not to be cached at all (the null case).
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class Server {
+
+  static final int port = 3232;
+  private final CensusSource source;
+  private final CacheBuilder cacheBuilder;
+
+  /**
+   * The constructor for the Server class.
+   *
+   * @param source the CensusSource object representing the source to get broadband data from
+   * @param cacheBuilder the CacheBuilder object representing null, to specify no cache, or a
+   *     CacheBuilder object specifying how requests should be cached
+   */
+<span class="nc" id="L41">  public Server(CensusSource source, CacheBuilder cacheBuilder) {</span>
+<span class="nc" id="L42">    this.source = source;</span>
+<span class="nc" id="L43">    this.cacheBuilder = cacheBuilder;</span>
+<span class="nc" id="L44">    CsvDataWrapper csvData = new CsvDataWrapper(new ArrayList&lt;&gt;(), false);</span>
+<span class="nc" id="L45">    Spark.port(port);</span>
+<span class="nc" id="L46">    after(</span>
+<span class="nc" id="L47">        (request, response) -&gt; {</span>
+<span class="nc" id="L48">          response.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</span>
+<span class="nc" id="L49">          response.header(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);</span>
+<span class="nc" id="L50">        });</span>
+
+    // Setting up the handler for the GET /order and /mock endpoints
+<span class="nc" id="L53">    Spark.get(&quot;loadcsv&quot;, new LoadCsvHandler(csvData));</span>
+<span class="nc" id="L54">    Spark.get(&quot;viewcsv&quot;, new ViewCsvHandler(csvData));</span>
+<span class="nc" id="L55">    Spark.get(&quot;searchcsv&quot;, new SearchCsvHandler(csvData));</span>
+<span class="nc" id="L56">    Spark.get(&quot;broadband&quot;, new BroadbandHandler(source, cacheBuilder));</span>
+<span class="nc" id="L57">    Spark.init();</span>
+<span class="nc" id="L58">    Spark.awaitInitialization();</span>
+<span class="nc" id="L59">  }</span>
+
+  /**
+   * The main method of the Server class which starts the server and then exits.
+   *
+   * @param args the command line arguments, which are not accessed
+   */
+  public static void main(String[] args) {
+<span class="nc" id="L67">    Server server =</span>
+<span class="nc" id="L68">        new Server(</span>
+<span class="nc" id="L69">            new AcsCensusSource(),</span>
+<span class="nc" id="L70">            CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES));</span>
+<span class="nc" id="L71">    System.out.println(&quot;Server started at http://localhost:&quot; + port);</span>
+<span class="nc" id="L72">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

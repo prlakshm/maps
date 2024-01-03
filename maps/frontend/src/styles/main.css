@@ -1,0 +1,117 @@
+@import url("https://use.typekit.net/bfx0syx.css");
+
+body {
+  font-weight: 400px;
+  font-style: normal;
+  color: #333;
+}
+
+/* Update background and text colors for an elegant, minimalistic look */
+.repl {
+  position: relative;
+  max-height: 100vh;
+  background-color: white; /* Dark gray background */
+  color: #808080; /* White text */
+}
+
+.repl-history {
+  height: 70vh;
+  margin: auto;
+  display: block;
+  overflow: scroll;
+  background-color: #f2f2f2; /* Slightly lighter gray background */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.repl-history h2 {
+  margin: 0; /* Remove top and bottom margin */
+  text-align: center;
+  padding: 10px 0; /* Keep padding on top and bottom */
+}
+
+.repl-history p {
+  font-size: medium;
+}
+
+.repl-history ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.repl-history ul li {
+  margin-bottom: 5px; /* Add space between history items */
+  padding: 5px; /* Add padding to each item */
+  background-color: white; /* Light gray background */
+}
+
+.repl-input {
+  box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2);
+  margin: 5px;
+  padding: 20px;
+  height: 30vh;
+}
+
+.repl-command-box {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: flex-end; /* Align elements to the bottom */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+button {
+  margin: 5px 0; /* Add vertical spacing between buttons */
+  background-color: #202020;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #808080;
+}
+
+.center-table {
+  margin: 0 auto; /* This will center the table horizontally */
+}
+
+hr {
+  display: none;
+}
+
+fieldset {
+  border: none;
+}
+
+/*New css styles for HTML table*/
+table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(240, 203, 240);
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+/*New css style for box around history item*/
+.history-element {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 16px;
+  border: 1px solid gray;
+}
+
+.history-element .text-box {
+  background-color: white;
+}

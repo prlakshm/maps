@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CsvDataWrapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.server</a> &gt; <span class="el_source">CsvDataWrapper.java</span></div><h1>CsvDataWrapper.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.server;
+
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * This CsvDataWrapper class wraps a List of List of String representing the CSV data parsed by
+ * loadcsv, which can be viewed or searched with viewcsv and searchcsv endpoints respectively. This
+ * class also has the field loadedInPast, representing whether any CSV data has been loaded.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class CsvDataWrapper {
+  private final List&lt;List&lt;String&gt;&gt; csvData;
+  private boolean loadedInPast;
+
+  /**
+   * The constructor for the CsvDataWrapper class.
+   *
+   * @param csvData the List of List of String representing the parsed CSV data
+   * @param loadedInPast the boolean representing whether any CSV data has been loaded
+   */
+<span class="fc" id="L24">  public CsvDataWrapper(List&lt;List&lt;String&gt;&gt; csvData, boolean loadedInPast) {</span>
+<span class="fc" id="L25">    this.csvData = csvData;</span>
+<span class="fc" id="L26">    this.loadedInPast = loadedInPast;</span>
+<span class="fc" id="L27">  }</span>
+
+  /**
+   * A setter method allowing the caller to reset the value of csvData (cleared and then set).
+   *
+   * @param data the List of List of String to replace the contents of csvData with
+   */
+  public void setData(List&lt;List&lt;String&gt;&gt; data) {
+<span class="fc" id="L35">    this.csvData.clear();</span>
+<span class="fc" id="L36">    this.csvData.addAll(data);</span>
+<span class="fc" id="L37">  }</span>
+
+  /**
+   * A getter method allowing the caller (viewcsv or searchcsv) to have an unmodifiable version of
+   * the csvData field.
+   *
+   * @return an unmodiiable List of List of String, allowing the caller to view csvData
+   */
+  public List&lt;List&lt;String&gt;&gt; getData() {
+<span class="fc" id="L46">    return Collections.unmodifiableList(this.csvData);</span>
+  }
+
+  /**
+   * A setter method allowing the caller to set the value of the boolean loadedInPast field.
+   *
+   * @param loaded the new boolean value for the loadedInPast field
+   */
+  public void setLoaded(boolean loaded) {
+<span class="fc" id="L55">    this.loadedInPast = loaded;</span>
+<span class="fc" id="L56">  }</span>
+
+  /**
+   * A getter method allowing the caller to check whether a CSV has been loaded by a call to this
+   * server's /loadcsv endpoint.
+   *
+   * @return a boolean representing whether CSV data has been loaded
+   */
+  public boolean getLoaded() {
+<span class="fc" id="L65">    return this.loadedInPast;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

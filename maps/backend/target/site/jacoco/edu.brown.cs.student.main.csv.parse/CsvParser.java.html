@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CsvParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.csv.parse</a> &gt; <span class="el_source">CsvParser.java</span></div><h1>CsvParser.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.csv.parse;
+
+import edu.brown.cs.student.main.creator.CreatorFromRow;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
+
+/**
+ * This class is the CSVParser class, which depends on a generic type T. Its fields include a
+ * BufferedReader object, a CreatorFromRow of T object, a Pattern object, and a List of T. This
+ * class has methods parseCSV, which parses the CSV from these fields and getStoreRows, which allows
+ * a user to get the parsed CSV information.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class CsvParser&lt;T&gt; {
+  private final BufferedReader buffReader;
+  private final CreatorFromRow&lt;T&gt; creatorFromRow;
+  private final Pattern regexSplitCsvRow;
+  private final List&lt;T&gt; storeRows;
+
+  /**
+   * Constructor for the CSVParser class.
+   *
+   * @param givenReader a Reader object to be wrapped in a BufferedReader to read the CSV
+   * @param creatorFromRow an object that defines how the CSVParser converts each row into an object
+   */
+<span class="fc" id="L33">  public CsvParser(Reader givenReader, CreatorFromRow&lt;T&gt; creatorFromRow) {</span>
+<span class="fc" id="L34">    this.buffReader = new BufferedReader(givenReader);</span>
+<span class="fc" id="L35">    this.creatorFromRow = creatorFromRow;</span>
+<span class="fc" id="L36">    this.regexSplitCsvRow = Pattern.compile(&quot;,(?=([^\\\&quot;]*\\\&quot;[^\\\&quot;]*\\\&quot;)*(?![^\\\&quot;]*\\\&quot;))&quot;);</span>
+<span class="fc" id="L37">    this.storeRows = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L38">  }</span>
+
+  /**
+   * A method with no arguments the returns nothing, uses the field data to parse the CSV data, turn
+   * each row into an object of type T, and store these rows in storeRows field as a list of T.
+   *
+   * @throws FactoryFailureException when the create method of the CreatorFromRow of T fails
+   * @throws IOException when there is an issue reading the CSV from the given Reader object
+   */
+  public void parseCsv() throws FactoryFailureException, IOException {
+<span class="fc" id="L48">    List&lt;T&gt; csvData = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="fc" id="L50">      String line = buffReader.readLine();</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">      while (line != null) {</span>
+<span class="fc" id="L52">        String[] result = regexSplitCsvRow.split(line);</span>
+<span class="fc" id="L53">        T dataCreated = creatorFromRow.create(List.of(result));</span>
+<span class="fc" id="L54">        csvData.add(dataCreated);</span>
+<span class="fc" id="L55">        line = buffReader.readLine();</span>
+      }
+<span class="fc" id="L57">      storeRows.clear();</span>
+<span class="fc" id="L58">      storeRows.addAll(csvData);</span>
+<span class="fc" id="L59">    } catch (FactoryFailureException ffe) {</span>
+<span class="fc" id="L60">      throw new FactoryFailureException(ffe.getMessage(), ffe.row);</span>
+<span class="fc" id="L61">    } catch (IOException ioe) {</span>
+<span class="fc" id="L62">      throw new IOException(&quot;Issue while reading the given Reader&quot;);</span>
+    }
+<span class="fc" id="L64">  }</span>
+
+  /**
+   * A getter method with no arguments that allows access to the storeRows field, which stores the
+   * rows of the CSV as a List of type T.
+   *
+   * @return a list of type T representing the rows read from the CSV
+   */
+  public List&lt;T&gt; getStoreRows() {
+<span class="fc" id="L73">    return Collections.unmodifiableList(storeRows);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

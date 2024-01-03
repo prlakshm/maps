@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EchoMockCensusSource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.sources.mocks</a> &gt; <span class="el_source">EchoMockCensusSource.java</span></div><h1>EchoMockCensusSource.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.sources.mocks;
+
+import edu.brown.cs.student.main.sources.CensusData;
+import edu.brown.cs.student.main.sources.CensusSource;
+
+/**
+ * The EchoMockCensusSource class implements the CensusSource interface and overrides its
+ * getBroadbandAccess method. An object of this class is constructed with the CensusData object
+ * containing a Double, and when the getBroadbandAccess method is called, an object of this class
+ * returns the exact CensusData object it was constructed with. Thus, this is called our echo mock
+ * source because it just echos what the user constructs it with.
+ *
+ * &lt;p&gt;This mock class enables us to test our /broadband handler without making many repeated calls
+ * to an object of the AcsCensusSource class, which makes real requests to the census API.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class EchoMockCensusSource implements CensusSource {
+
+  private final CensusData constantData;
+
+  /**
+   * The constructor for the EchoMockCensusSource class.
+   *
+   * @param constantData a CensusData object containing a Double representing broadband access
+   */
+<span class="fc" id="L28">  public EchoMockCensusSource(CensusData constantData) {</span>
+<span class="fc" id="L29">    this.constantData = constantData;</span>
+<span class="fc" id="L30">  }</span>
+
+  /**
+   * A method that returns the exact CensusData object that the EchoMockCensusSource object was
+   * constructed with.
+   *
+   * @param state the String representing the state to find broadband data for, although unused
+   * @param county the String representing the county to find broadband data for, also unused
+   * @return the CensusData object that the EchoMockCensusSource object was constructed with
+   */
+  @Override
+  public CensusData getBroadbandAccess(String state, String county) {
+<span class="fc" id="L42">    return constantData;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

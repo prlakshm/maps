@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CsvSearcher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.csv.search</a> &gt; <span class="el_source">CsvSearcher.java</span></div><h1>CsvSearcher.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.csv.search;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * This class is the CsvSearcher class, which is called by the main run function. Constructed with a
+ * CsvParser object, an object of the CsvSearcher class can search the csvRows from the CsvParser's
+ * methods parseCsv and getStoreRows to find rows with the given search criteria.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class CsvSearcher {
+
+  private final List&lt;List&lt;String&gt;&gt; csvRows;
+
+  /**
+   * Constructor for the CsvSearcher class.
+   *
+   * @param csvData List of List of String, representing the CSV data
+   */
+<span class="fc" id="L24">  public CsvSearcher(List&lt;List&lt;String&gt;&gt; csvData) {</span>
+<span class="fc" id="L25">    this.csvRows = csvData;</span>
+<span class="fc" id="L26">  }</span>
+
+  /**
+   * A method that uses the String colID to find the numeric index of the target column, only called
+   * if there is a specific column to be searching. CsvRows is guaranteed to not be empty because we
+   * caught that case in search before this function can be called.
+   *
+   * @param colIdIsNum boolean representing whether the colID is a number
+   * @param colId String representing the name or index of column to be searched
+   * @return integer representing the index of column to be searched
+   * @throws IndexOutOfBoundsException if the target column is not found or is out of range
+   */
+  private int findColIndex(boolean colIdIsNum, String colId) throws IndexOutOfBoundsException {
+    int colIndex;
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (!colIdIsNum) {</span>
+      // If the column ID is not numeric, treat it as a column name and find its index
+<span class="fc" id="L42">      List&lt;String&gt; headers = csvRows.get(0);</span>
+<span class="fc" id="L43">      colIndex = headers.indexOf(colId);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">      if (colIndex == -1) {</span>
+<span class="fc" id="L45">        throw new IndexOutOfBoundsException(</span>
+<span class="fc" id="L46">            &quot;Column identifier &quot;</span>
+<span class="fc" id="L47">                + colId</span>
+                + &quot; not found. Valid column identifiers include &quot;
+<span class="fc" id="L49">                + headers</span>
+                + &quot; and numbers between 0 and &quot;
+<span class="fc" id="L51">                + (headers.size() - 1)</span>
+                + &quot; inclusive.&quot;);
+      }
+    } else {
+      // Otherwise, use convert the column ID into a number
+<span class="fc" id="L56">      colIndex = Integer.parseInt(colId);</span>
+<span class="fc" id="L57">      int firstRowLength = csvRows.get(0).size();</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">      if (colIndex &gt;= firstRowLength) {</span>
+<span class="fc" id="L59">        throw new IndexOutOfBoundsException(</span>
+<span class="fc" id="L60">            &quot;Column index &quot;</span>
+<span class="fc" id="L61">                + colIndex</span>
+                + &quot; not found. Can search numeric column identifiers between 0 and &quot;
+<span class="fc" id="L63">                + (firstRowLength - 1)</span>
+                + &quot; inclusive.&quot;);
+      }
+    }
+<span class="fc" id="L67">    return colIndex;</span>
+  }
+
+  /**
+   * A method that searches all columns of each row of the CSV for the desired searchValue. NOTE:
+   * the searchValue much match an item in the row exactly (case matters).
+   *
+   * @param searchValue String representing the value to find in any column of a row
+   * @return List of String containing the rows where the searchValue is found exactly
+   */
+  private List&lt;List&lt;String&gt;&gt; searchAllCols(boolean hasHeaders, String searchValue) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">    int start = hasHeaders ? 1 : 0;</span>
+<span class="fc" id="L79">    List&lt;List&lt;String&gt;&gt; resultsData = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    for (List&lt;String&gt; row : csvRows.subList(start, csvRows.size())) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">      for (String item : row) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (item.equals(searchValue)) {</span>
+<span class="fc" id="L83">          resultsData.add(row);</span>
+        }
+      }
+    }
+<span class="fc" id="L87">    return resultsData;</span>
+  }
+
+  /**
+   * A method that searches only one column, with index colIndex, and returns all rows where
+   * searchValue is found in the column with that index.
+   *
+   * @param searchValue String representing the value to be found in its exact form
+   * @param colIdIsNum boolean representing whether column ID is numeric
+   * @param colId String which the method includes in an error message if exception is thrown
+   * @return List of String of rows where searchValue in its exact form is found in the column with
+   *     index colIndex, or a List only containing an error String if fails
+   */
+  private List&lt;List&lt;String&gt;&gt; searchOneCol(
+      boolean hasHeaders, String searchValue, boolean colIdIsNum, String colId)
+      throws SearchException {
+<span class="fc bfc" id="L103" title="All 2 branches covered.">    int start = hasHeaders ? 1 : 0;</span>
+<span class="fc" id="L104">    List&lt;List&lt;String&gt;&gt; resultsData = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="fc" id="L106">      int colIndex = findColIndex(colIdIsNum, colId);</span>
+      // For each row, get the item at the colIndex and check if it matches searchValue
+<span class="fc bfc" id="L108" title="All 2 branches covered.">      for (List&lt;String&gt; row : csvRows.subList(start, csvRows.size())) {</span>
+<span class="fc" id="L109">        String item = row.get(colIndex);</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (item.equals(searchValue)) {</span>
+<span class="fc" id="L111">          resultsData.add(row);</span>
+        }
+      }
+<span class="fc" id="L114">      return resultsData;</span>
+<span class="fc" id="L115">    } catch (IndexOutOfBoundsException ibe) {</span>
+<span class="fc" id="L116">      throw new SearchException(ibe.getMessage());</span>
+    }
+  }
+
+  /**
+   * A public method, which is called by the Main runner, which searches for searchValue in the
+   * column(s) specified by colID, and returns a list of matching rows or a list containing an error
+   * message describing what went wrong.
+   *
+   * @param hasHeaders boolean representing whether the CSV has a row of headers
+   * @param searchValue String representing the value to be matched exactly in the CSV data
+   * @param colId String representing the column(s) to search for the exact appearance of
+   *     searchValue
+   * @return List of String containing the matching rows or only containing an error String
+   * @throws SearchException if there is an issue with the search criteria given
+   */
+  public List&lt;List&lt;String&gt;&gt; search(boolean hasHeaders, String searchValue, String colId)
+      throws SearchException {
+<span class="fc" id="L134">    boolean colIdIsNum = colId.matches(&quot;^-?\\d+$&quot;);</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">    if (csvRows.isEmpty()) {</span>
+      // If there is no data, return an empty list
+<span class="fc" id="L137">      return List.of();</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">    } else if (colId.equals(&quot;*&quot;)) {</span>
+      // Search all columns for the search value
+<span class="fc" id="L140">      List&lt;List&lt;String&gt;&gt; rowsFound = searchAllCols(hasHeaders, searchValue);</span>
+<span class="fc" id="L141">      return Collections.unmodifiableList(rowsFound);</span>
+<span class="fc bfc" id="L142" title="All 4 branches covered.">    } else if (colIdIsNum || hasHeaders) {</span>
+      // Search the specified column for the search value
+<span class="fc" id="L144">      List&lt;List&lt;String&gt;&gt; rowsFound = searchOneCol(hasHeaders, searchValue, colIdIsNum, colId);</span>
+<span class="fc" id="L145">      return Collections.unmodifiableList(rowsFound);</span>
+    } else {
+      // Return list with error message to be passed along to main
+<span class="fc" id="L148">      int maxIndex = csvRows.get(0).size() - 1;</span>
+<span class="fc" id="L149">      throw new SearchException(</span>
+<span class="fc" id="L150">          &quot;Cannot search non-numeric column &quot;</span>
+<span class="fc" id="L151">              + colId</span>
+              + &quot; if no headers. Can search numeric column identifiers between 0 and &quot;
+<span class="fc" id="L153">              + maxIndex</span>
+              + &quot; inclusive.&quot;);
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

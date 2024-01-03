@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewCsvHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.server</a> &gt; <span class="el_source">ViewCsvHandler.java</span></div><h1>ViewCsvHandler.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.server;
+
+import com.squareup.moshi.Moshi;
+import java.util.List;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+/**
+ * This ViewCsvHandler class handles a /viewcsv request to our server. It is constructed with a
+ * CsvDataWrapper object, wrapping a List of List of String representing the CSV data. If there is
+ * data loaded in the CsvDataWrapper object, then this request returns an object with a field
+ * containing all the rows of that CSV data.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public class ViewCsvHandler implements Route {
+  private final CsvDataWrapper csvData;
+
+  /**
+   * The constructor for the ViewCsvHandler class.
+   *
+   * @param csvData a CsvDataWrapper object wrapping a List of List of String of CSV data and a
+   *     boolean representing whether a CSV file has been loaded
+   */
+<span class="fc" id="L27">  public ViewCsvHandler(CsvDataWrapper csvData) {</span>
+<span class="fc" id="L28">    this.csvData = csvData;</span>
+<span class="fc" id="L29">  }</span>
+
+  /**
+   * Method that handles a /viewcsv request to our Server. Given a request and response, returns a
+   * failure or success response object. If successful, the response object contains all the rows of
+   * CSV data in the CSV file loaded.
+   *
+   * @param request the Request object passed by client, which needs no query parameters
+   * @param response the Response object that we do not use
+   * @return response object depending on whether the search was successful, and all CSV data
+   */
+  @Override
+  public Object handle(Request request, Response response) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    if (csvData.getData().isEmpty()) {</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">      if (!csvData.getLoaded()) {</span>
+<span class="fc" id="L44">        return new ViewFailureResponse(&quot;error_not_loaded&quot;, &quot;CSV file not loaded&quot;).serialize();</span>
+      }
+    }
+<span class="fc" id="L47">    return new ViewSuccessResponse(csvData.getData()).serialize();</span>
+  }
+
+  /**
+   * A record representing a failed call to the /viewcsv handler, containing a result with an error
+   * code and an error message with more information.
+   *
+   * @param result the String containing an error code
+   * @param error_message the String containing a more specific error message
+   */
+<span class="fc" id="L57">  public record ViewFailureResponse(String result, String error_message) {</span>
+
+    /**
+     * This method serializes a failure response object.
+     *
+     * @return this failure response object, serialized as Json
+     */
+    String serialize() {
+<span class="fc" id="L65">      Moshi moshi = new Moshi.Builder().build();</span>
+<span class="fc" id="L66">      return moshi.adapter(ViewFailureResponse.class).toJson(this);</span>
+    }
+  }
+
+  /**
+   * A record representing a successful call to the /viewcsv handler, containing a result of
+   * success, as well as all the loaded CSV data.
+   *
+   * @param result the String containing &quot;success&quot;
+   * @param data the List of List of String containing all the CSV data loaded
+   */
+<span class="fc" id="L77">  public record ViewSuccessResponse(String result, List&lt;List&lt;String&gt;&gt; data) {</span>
+
+    /**
+     * The constructor for the ViewSuccessResponse class.
+     *
+     * @param data the List of List of String containing all the CSV data loaded
+     */
+    public ViewSuccessResponse(List&lt;List&lt;String&gt;&gt; data) {
+<span class="fc" id="L85">      this(&quot;success&quot;, data);</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * This method serializes a success response object.
+     *
+     * @return this success response object, serialized as Json
+     */
+    String serialize() {
+<span class="fc" id="L94">      Moshi moshi = new Moshi.Builder().build();</span>
+<span class="fc" id="L95">      return moshi.adapter(ViewSuccessResponse.class).toJson(this);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

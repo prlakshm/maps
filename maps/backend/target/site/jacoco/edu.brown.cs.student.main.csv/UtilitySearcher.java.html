@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UtilitySearcher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">s0</a> &gt; <a href="index.source.html" class="el_package">edu.brown.cs.student.main.csv</a> &gt; <span class="el_source">UtilitySearcher.java</span></div><h1>UtilitySearcher.java</h1><pre class="source lang-java linenums">package edu.brown.cs.student.main.csv;
+
+import static java.lang.System.exit;
+
+import edu.brown.cs.student.main.creator.ListStringFromRow;
+import edu.brown.cs.student.main.csv.parse.CsvParser;
+import edu.brown.cs.student.main.csv.parse.FactoryFailureException;
+import edu.brown.cs.student.main.csv.search.CsvSearcher;
+import edu.brown.cs.student.main.csv.search.SearchException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * The UtilitySearcher class of our project. This is where execution begins for the command line
+ * tool.
+ *
+ * @author sarahridley juliazdzilowska
+ * @version 1.0
+ */
+public final class UtilitySearcher {
+  private final FileReader dataFileReader;
+  private final String searchValue;
+  private final boolean hasHeaders;
+  private final String colId;
+
+  /**
+   * Constructor of the UtilitySearcher class.
+   *
+   * @param dataFileReader FileReader representing the file to read
+   * @param searchValue String representing target item
+   * @param hasHeaders boolean representing whether the file has headers
+   * @param colId String representing the column(s) to search in
+   */
+<span class="nc" id="L37">  private UtilitySearcher(</span>
+      FileReader dataFileReader, String searchValue, boolean hasHeaders, String colId) {
+<span class="nc" id="L39">    this.dataFileReader = dataFileReader;</span>
+<span class="nc" id="L40">    this.searchValue = searchValue;</span>
+<span class="nc" id="L41">    this.hasHeaders = hasHeaders;</span>
+<span class="nc" id="L42">    this.colId = colId;</span>
+<span class="nc" id="L43">  }</span>
+
+  /**
+   * The initial method called when execution of UtilityRunner begins.
+   *
+   * @param args An array of command line arguments
+   */
+  public static void main(String[] args) {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">    if (args.length &lt; 2) {</span>
+<span class="nc" id="L52">      System.err.println(</span>
+<span class="nc" id="L53">          &quot;ERROR: Please provide all required arguments:\n&quot;</span>
+              + &quot;The CSV filepath, the value to search for, (optional) whether the CSV &quot;
+              + &quot;contains headers, (optional) the column identifier&quot;);
+<span class="nc" id="L56">      exit(1);</span>
+    }
+<span class="nc" id="L58">    String filePath = args[0];</span>
+    try {
+<span class="nc" id="L60">      File csvFile = new File(filePath);</span>
+<span class="nc" id="L61">      FileReader fileReader = new FileReader(csvFile);</span>
+<span class="nc" id="L62">      String searchValue = args[1];</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">      boolean hasHeaders = args.length &gt;= 3 &amp;&amp; Boolean.parseBoolean(args[2]);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">      String colId = args.length &gt;= 4 ? args[3] : &quot;*&quot;;</span>
+<span class="nc" id="L65">      new UtilitySearcher(fileReader, searchValue, hasHeaders, colId).run();</span>
+<span class="nc" id="L66">    } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L67">      System.err.println(&quot;ERROR: No file found at path &quot; + filePath);</span>
+<span class="nc" id="L68">      exit(1);</span>
+    }
+<span class="nc" id="L70">  }</span>
+
+  /**
+   * A method called by the main method, which creates a CSVParser and CSVSearcher and prints the
+   * results, whether they be error messages or rows found, to the console.
+   */
+  private void run() {
+    try {
+<span class="nc" id="L78">      CsvParser&lt;List&lt;String&gt;&gt; csvParser = new CsvParser&lt;&gt;(dataFileReader, new ListStringFromRow());</span>
+<span class="nc" id="L79">      csvParser.parseCsv();</span>
+<span class="nc" id="L80">      List&lt;List&lt;String&gt;&gt; dataRows = csvParser.getStoreRows();</span>
+<span class="nc" id="L81">      CsvSearcher csvSearcher = new CsvSearcher(dataRows);</span>
+<span class="nc" id="L82">      List&lt;List&lt;String&gt;&gt; parsedResults = csvSearcher.search(hasHeaders, searchValue, colId);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">      if (parsedResults.isEmpty()) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        String colRep = colId.equals(&quot;*&quot;) ? &quot;any column&quot; : &quot;column &quot; + colId;</span>
+<span class="nc" id="L85">        System.err.println(&quot;ERROR: No rows found with value &quot; + searchValue + &quot; in &quot; + colRep);</span>
+      }
+<span class="nc bnc" id="L87" title="All 2 branches missed.">      for (List&lt;String&gt; row : parsedResults) {</span>
+<span class="nc" id="L88">        System.out.println(row);</span>
+      }
+<span class="nc" id="L90">      exit(0);</span>
+<span class="nc" id="L91">    } catch (FactoryFailureException | IOException | SearchException e) {</span>
+<span class="nc" id="L92">      System.err.println(e.getMessage());</span>
+<span class="nc" id="L93">      exit(1);</span>
+    }
+<span class="nc" id="L95">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
