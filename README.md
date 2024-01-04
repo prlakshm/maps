@@ -8,7 +8,7 @@
 <br>Julia Zdzilowska (frontend and backend)
 <br>Sarah Ridley (backend)
 
-<br>**Link to Deployed Webpage:** https://github.com/cs0320-f23/maps-prlakshm-tbonas
+<br>**Link to Deployed Webpage:** https://prlakshm.github.io/maps/
 
 <br>**Estimated Completion Time:** 40 hours
 
