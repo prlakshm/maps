@@ -1,5 +1,8 @@
 package edu.brown.cs.student.server.jsonTypes;
 
+/**
+ *  Simple class for testing json reader
+ */
 public class Person {
 
     private String name;

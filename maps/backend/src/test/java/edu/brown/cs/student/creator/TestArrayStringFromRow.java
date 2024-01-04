@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
  * This is a testing class that tests the ArrayStringFromRow class, which implements CreatorFromRow.
  * An ArrayStringFromRow instance turns a list of string row into an array of string row.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestArrayStringFromRow {
   /** Create an empty String[] from an empty row */

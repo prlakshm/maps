@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
  * containing a key string (the first element in a row) and a list of strings (the remaining
  * elements in the row).
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestPairStringListFromRow {
 

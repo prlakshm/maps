@@ -29,6 +29,9 @@ import spark.Route;
  * This class handles bounding box queries and implements the Spark Route interface.
  * It is responsible for processing HTTP requests related to bounding box queries and
  * providing responses with features that fall within the specified bounding box.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class BoundaryBoxHandler implements Route {
 

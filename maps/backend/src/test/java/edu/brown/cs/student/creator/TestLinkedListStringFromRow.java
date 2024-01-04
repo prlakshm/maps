@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
  * CreatorFromRow. A LinkedListStringFromRow instance turns a list of string row into a linked list
  * of string row.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestLinkedListStringFromRow {
 

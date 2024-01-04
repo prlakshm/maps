@@ -26,6 +26,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The class contains JUnit tests for the MapsHelpers class.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestMapsHelpers {
 

@@ -10,8 +10,8 @@ import kotlin.Pair;
  * This class overrides the create method that allows the CSV parser to convert each row into an
  * object of type pair of String and List of String.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class PairStringListFromRow implements CreatorFromRow<Pair<String, List<String>>> {
   /**

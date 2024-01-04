@@ -13,8 +13,8 @@ import edu.brown.cs.student.main.sources.CensusSource;
  * <p>This mock class enables us to test our /broadband handler without making many repeated calls
  * to an object of the AcsCensusSource class, which makes real requests to the census API.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class EchoMockCensusSource implements CensusSource {
 

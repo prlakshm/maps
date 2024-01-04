@@ -4,6 +4,9 @@ import com.squareup.moshi.Moshi;
 
 /**
  * A generic class for reading and deserializing JSON strings into Java objects using Moshi library.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  *
  * @param <T> The type of the Java object to deserialize the JSON into.
  */

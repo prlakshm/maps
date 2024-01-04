@@ -8,8 +8,8 @@ import java.util.List;
  * overrides the create method that allows the CSV parser to convert each row into an object of type
  * linked list of String.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class LinkedListStringFromRow implements CreatorFromRow<LinkedList<String>> {
   /**

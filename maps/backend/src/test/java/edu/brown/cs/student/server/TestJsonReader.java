@@ -6,6 +6,12 @@ import edu.brown.cs.student.main.server.JsonReader;
 import org.junit.jupiter.api.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
+/**
+ * This class tests json reader
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
+ */
 public class TestJsonReader {
 
   /**

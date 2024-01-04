@@ -16,6 +16,7 @@ import React, {
 } from "react";
 import { MutableRefObject } from "react";
 import { MapRef } from "react-map-gl";
+// @ts-ignore
 import { ACCESS_TOKEN } from "../private/api.js"; // Import an API access token
 import "mapbox-gl/dist/mapbox-gl.css"; // Import Mapbox CSS
 import "../styles/map.css"; // Import custom styles
@@ -198,7 +199,7 @@ function Mapbox({ coordinates, setCoordinates }: MapBoxProps) {
     }
   }, [coordinates]);
 
-  
+
   // Function to handle map click events when want to see county, state
 async function onMapClick(e: MapLayerMouseEvent) {
   try {

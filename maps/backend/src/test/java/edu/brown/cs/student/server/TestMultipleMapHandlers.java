@@ -26,6 +26,9 @@ import spark.Spark;
  * made to each handler after one another.
  *
  * The class contains JUnit tests for the map handler called in sequence class.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestMultipleMapHandlers {
   // Type definition for mapping JSON to a Map<String, Object>

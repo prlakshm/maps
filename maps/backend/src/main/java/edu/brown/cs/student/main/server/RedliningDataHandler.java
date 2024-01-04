@@ -30,6 +30,9 @@ import spark.Route;
  *
  * The class handles loading and caching of GEOJSON data for redlining analysis and implements the
  * Spark Route interface.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class RedliningDataHandler implements Route {
 

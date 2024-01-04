@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
  * classes, EchoMockCensusSource and StaleMockCensusSource, which are largely used for testing the
  * broadband handler.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestAcsCensusSource {
   /**

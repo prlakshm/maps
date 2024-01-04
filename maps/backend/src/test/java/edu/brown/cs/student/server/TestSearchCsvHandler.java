@@ -31,8 +31,8 @@ import spark.Spark;
  * with different combinations of /loadcsv and /viewcsv calls preceding, and different search
  * criteria.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestSearchCsvHandler {
   private final Type mapStringObject =

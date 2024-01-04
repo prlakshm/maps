@@ -4,8 +4,8 @@ package edu.brown.cs.student.main.sources;
  * This class represents an exception that is thrown if there is an error fetching broadband access
  * data from the source.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class DataSourceException extends Exception {
 

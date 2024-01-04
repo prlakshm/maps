@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
  * access in North Carolina and Rhode Island counties as of 9/25/23, or throws a DataSourceException
  * if the given county / state combination does not exist in North Carolina or Rhode Island.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestStaleMockCensusSource {
 

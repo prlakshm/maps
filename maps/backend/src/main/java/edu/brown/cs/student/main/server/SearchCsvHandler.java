@@ -13,8 +13,8 @@ import spark.Route;
  * data loaded in the CsvDataWrapper object, then this request searches that CSV data with the given
  * query parameters and returns the rows matching the query.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class SearchCsvHandler implements Route {
 

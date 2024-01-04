@@ -21,8 +21,8 @@ import okio.Buffer;
  * in a CensusData object. If the broadband access level cannot be found for some reason, this
  * method (or a method that it calls) throws a DataSourceException.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class AcsCensusSource implements CensusSource {
   private final HashMap<String, String> stateIds;

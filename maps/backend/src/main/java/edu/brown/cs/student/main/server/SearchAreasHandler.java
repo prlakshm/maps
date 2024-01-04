@@ -26,7 +26,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-// The class handles searching areas in GEOJSON data based on a provided keyword and implements the Spark Route interface.
+/** 
+ * The class handles searching areas in GEOJSON data based on a provided keyword and implements the Spark Route interface.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
+ */
 public class SearchAreasHandler implements Route {
 
   // The FeatureCollection to store loaded GEOJSON data

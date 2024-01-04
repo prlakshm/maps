@@ -17,8 +17,8 @@ import java.util.List;
  * The UtilitySearcher class of our project. This is where execution begins for the command line
  * tool.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public final class UtilitySearcher {
   private final FileReader dataFileReader;

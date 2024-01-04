@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
  * getBroadbandAccess method. This method takes a state name and a county name as parameters, and
  * returns the same CensusData object that it was constructed with.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestEchoMockCensusSource {
   /**

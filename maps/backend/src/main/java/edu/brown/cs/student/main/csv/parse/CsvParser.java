@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
  * class has methods parseCSV, which parses the CSV from these fields and getStoreRows, which allows
  * a user to get the parsed CSV information.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class CsvParser<T> {
   private final BufferedReader buffReader;

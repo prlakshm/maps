@@ -8,8 +8,8 @@ import java.util.List;
  * loadcsv, which can be viewed or searched with viewcsv and searchcsv endpoints respectively. This
  * class also has the field loadedInPast, representing whether any CSV data has been loaded.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class CsvDataWrapper {
   private final List<List<String>> csvData;

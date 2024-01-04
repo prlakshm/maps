@@ -12,8 +12,8 @@ import spark.Route;
  * data loaded in the CsvDataWrapper object, then this request returns an object with a field
  * containing all the rows of that CSV data.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class ViewCsvHandler implements Route {
   private final CsvDataWrapper csvData;

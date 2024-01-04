@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
  * which searches the rows, the List of List of String, for the given search criteria, and returns a
  * list with the rows found or throws an exception.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestCsvSearcher {
   /**

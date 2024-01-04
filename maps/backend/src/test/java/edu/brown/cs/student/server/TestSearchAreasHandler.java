@@ -27,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * This class contains JUnit tests for the SearchAreasHandler class.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestSearchAreasHandler {
 

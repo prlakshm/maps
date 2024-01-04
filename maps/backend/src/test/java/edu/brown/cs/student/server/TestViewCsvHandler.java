@@ -29,8 +29,8 @@ import spark.Spark;
  * requests to our Server. This class tests many cases for how combiantions of /loadcsv and /viewcsv
  * can occur, as well as different kinds of files loaded, missing parameters, and more.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestViewCsvHandler {
   private final Type mapStringObject =
