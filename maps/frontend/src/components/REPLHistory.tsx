@@ -70,21 +70,63 @@ export function REPLHistory(props: REPLHistoryProps) {
           <p>Command Instructions:</p>
           <ul>
             <li>
-              <span style={{ color: "mediumorchid" }}>
-                "broadband [state] [county]"
-              </span>{" "}
-              to get broadband access percent county in state
+              "<span style={{ color: "mediumorchid" }}>load [filepath]</span>"{" "}
+              to load csv file
             </li>
             <li>
-              <span style={{ color: "mediumorchid" }}>
-                "searchareas [keyword]"
-              </span>{" "}
-              to search by area descriptions
+              {" "}
+              "<span style={{ color: "mediumorchid" }}>view</span>" to view csv
+              file
             </li>
-            <li><span style={{ color: "mediumorchid" }}>"mode brief"</span> to display
-          only history output</li>
-          <li><span style={{ color: "mediumorchid" }}>"mode verbose"</span> to display
-          history command and output</li>
+            <li>
+              "
+              <span style={{ color: "mediumorchid" }}>
+                search [has_headers] [search_val] [col_name/col_index]
+              </span>
+              " to search a specific column where has_headers is "true" or
+              "false"
+            </li>
+            <li>
+              "
+              <span style={{ color: "mediumorchid" }}>
+                search [has_headers] [search_val] *
+              </span>
+              " to search all columns where has_headers is "true" or "false"
+            </li>
+            <li>
+              "
+              <span style={{ color: "mediumorchid" }}>
+                broadband [state] [county]
+              </span>
+              " to get broadband access percent county in state
+            </li>
+            <li>
+              "
+              <span style={{ color: "mediumorchid" }}>
+                searchareas [keyword]
+              </span>
+              " to search by area descriptions
+            </li>
+            <li>
+              {" "}
+              "
+              <span style={{ color: "mediumorchid" }}>
+                register [command] [function_to_execute]
+              </span>
+              " to register a new command
+            </li>
+            <li>
+              "<span style={{ color: "mediumorchid" }}>mode brief</span>" to
+              display only history output
+            </li>
+            <li>
+              "<span style={{ color: "mediumorchid" }}>mode verbose</span>" to
+              display history command and output
+            </li>
+            <li>
+              "<span style={{ color: "mediumorchid" }}>clear</span>" to
+              clear history
+            </li>
           </ul>
         </div>
       )}

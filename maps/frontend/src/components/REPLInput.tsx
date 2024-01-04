@@ -91,6 +91,19 @@ export function REPLInput(props: REPLInputProps) {
   };
 
   /**
+   * Function handling clearing history changes of the REPL interface
+   * @param {string[]} args - none when using this command
+   */
+  const handleClear: REPLFunction = async (args: string[]): Promise<string> => {
+    if (args.length !== 0) {
+      return "Invalid usage of 'clear' command. Usage: clear";
+    } else {
+      setHistory([]);
+      return "History cleared";
+    }
+  };
+
+  /**
    * Function handling loading the file
    * @param {string[]} args - The file path of a file to be loaded (must be within the data directory)
    */
@@ -235,6 +248,7 @@ export function REPLInput(props: REPLInputProps) {
   useEffect(() => {
     registerCommand("register", handleRegister);
     registerCommand("mode", handleMode);
+    registerCommand("clear", handleClear);
     registerCommand("load", handleLoad);
     registerCommand("view", handleView);
     registerCommand("search", handleSearch);
@@ -324,7 +338,7 @@ export function REPLInput(props: REPLInputProps) {
   return (
     <div className="repl-input" aria-live="polite" aria-label={ariaLabel}>
       <fieldset>
-        <legend style={{ marginBottom: '10px' }}>Enter a command:</legend>
+        <legend style={{ marginBottom: "10px" }}>Enter a command:</legend>
         <ControlledInput
           value={commandString}
           setValue={setCommandString}
@@ -335,7 +349,7 @@ export function REPLInput(props: REPLInputProps) {
       <button
         aria-label="repl-input-submit-button"
         onClick={() => handleSubmit(commandString)}
-        style={{ marginTop: '8px' }}
+        style={{ marginTop: "8px" }}
       >
         Submit
       </button>
