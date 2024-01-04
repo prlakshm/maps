@@ -9,8 +9,8 @@ import java.util.List;
  * CsvParser object, an object of the CsvSearcher class can search the csvRows from the CsvParser's
  * methods parseCsv and getStoreRows to find rows with the given search criteria.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class CsvSearcher {
 

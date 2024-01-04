@@ -33,6 +33,9 @@ import spark.Spark;
  *
  * <p>In short, there are two new techniques demonstrated here: integration testing; and testing
  * with mock data / mock objects.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestBroadbandHandler {
 

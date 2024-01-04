@@ -17,8 +17,8 @@ import spark.Route;
  * filepath passed as a query parameter is found, the handle method parses the CSV and stores its
  * rows in the CsvDataWrapper object and sets the wrapper's loadedInPast field to true.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class LoadCsvHandler implements Route {
   private final CsvDataWrapper csvData;

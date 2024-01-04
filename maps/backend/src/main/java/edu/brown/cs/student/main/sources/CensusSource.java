@@ -4,8 +4,8 @@ package edu.brown.cs.student.main.sources;
  * This is an interface that represents a census source object, which can be implemented by a mock
  * data source or a real data source that queries the census API.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public interface CensusSource {
 

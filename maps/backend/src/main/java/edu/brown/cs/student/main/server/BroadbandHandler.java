@@ -28,8 +28,8 @@ import spark.Route;
  * CacheBuilder parameter in the structure. Otherwise, they should pass a CacheBuilder with their
  * desired attributes (eviction rules, size, etc.).
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class BroadbandHandler implements Route {
 

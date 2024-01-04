@@ -10,7 +10,7 @@
 
 <br>**Link to Deployed Webpage:** https://github.com/cs0320-f23/maps-prlakshm-tbonas
 
-<br>**Estimated Completion Time:** 30 hours
+<br>**Estimated Completion Time:** 40 hours
 
 ### 1. Functionality/Design
 
@@ -32,7 +32,7 @@ This file is the entry point for rendering the application.
 It renders the App component within the root element in the HTML file.
 
 Mapbox.tsx:
-This file defines the main Mapbox component for displaying maps and geospatial data. The Mapbox component manages the map view, geocoding, and interaction with geospatial data. It contains features like setting the map view state, handling user inputs, and interacting with overlays.
+This file defines the main Mapbox component for displaying maps and geospatial data. The Mapbox component manages the map view, geocoding, and interaction with geospatial data. It contains features like setting the map view state, handling user inputs, and interacting with overlays. It also includes the feature for viewing county and state upon clicking on a spot on the map.
 
 overlay.ts:
 This file provides overlay data and styling for map layers. It contains the overlayData function that converts raw JSON data into a GeoJSON FeatureCollection and defines styles for map layers.The overlayData function ensures that the data is converted to a GeoJSON FeatureCollection.
@@ -42,7 +42,7 @@ REPL.tsx:
 This part defines a React component called REPL that provides a Read-Eval-Print Loop (REPL) interface for users to input commands, display command history, and view the results of each command. It manages the history, display mode, and command results. This component renders two subcomponents: REPLHistory and REPLInput.
 
 REPLHistory.tsx:
-This component displays the command history and corresponding results. It has options to display in either "brief" or "verbose" mode. It receives a list of history items, a display mode, a map of command results, and an ARIA label as props.
+This component displays the command history and corresponding results. It has options to display in either "brief" or "verbose" mode. It receives a list of history items, a display mode, a map of command results, and an ARIA label as props. There is also an option to view all the possible commands upon clicking on the "Command History " header.
 
 REPLInput.tsx:
 This component handles user input and executes commands. It allows users to enter commands and has options to change the display mode. It also registers various commands and processes user input accordingly.
@@ -55,9 +55,9 @@ In App.tsx, where we used the useState hook to manage the coordinates state, whi
 
 In Mapbox.tsx, we used a useState hook to manage the map view state, overlay data, latitude and longitude inputs, and highlighted coordinates.
 
-We also included aria labels throughout our code, such as in ControlledInput and REPLHistory to enhance user accessibility.
+We also included aria labels throughout our code, such as in ControlledInput and REPLHistory to enhance user accessibility. We included keyboard shortcuts, such as submitting a command by pressing "Enter" and navigating to the command input by clicking "Ctrl+b". You can navigate to the latitude input by pressing "Ctrl+q", press "Tab" to navigate to the longitude input, then press "Enter" to submit the coordinates.
 
-TRuntime and space optimizations are evident in our construction of components
+Runtime and space optimizations are evident in our construction of components
 such as ControlledInput, which were designed independently to be reused across
 the application, promoting clean and maintainable code. Efficiently updating the
 command history and UI in response to user actions, minimized unnecessary
@@ -88,6 +88,9 @@ This class represents a feature in a map and includes information about its type
 ### 2. Errors/Bugs:
 
 Based on extensive testing there are currently no known bugs in our code.
+
+**IMPORTANT: The API handling county and state geolocation requests can be overloaded if there are too many frequent clicks on the map. Because of this, the tooltip might not always appear or take a while to appear if there are too many consecutive clicks.**
+
 
 ### 3. Testing:
 
@@ -174,8 +177,9 @@ choice into the command line. The user can input the command 'mode brief' or 'mo
 verbose' to change the mode of the application. The user can input the command
 'load' to load a csv file into the application. The user can input the
 command 'view' to view the loaded csv file. The user can input the command 'search'
-to search for a term in the loaded csv file.
-The user can also register new commands using the 'register' command.
+to search for a term in the loaded csv file. They can clear the command history 
+using the "clear" command. The user can also register new commands using the 'register' 
+command.
 
 The user can also input 'broadband' to find the broadband percent from the state
 and county. Lastly, the user can 'searchareas' by a keyword to search for areas
@@ -183,13 +187,16 @@ with that keyword in the area description. From this, the map will move to show
 the highlighted areas. If there are no areas with the keyword, the map will zoom
 out to the globe to show the user that there are no highlighted dots (no areas match).
 
+A user can view all possible commands by clicking on the "Command History" header. They
+can close the command instructions by reclicking the header. 
+
 The user can also search for longitude and latitude directly. There are keyboard
-shortcuts added to the website. The user can press Ctrl+b to navigate to the input
-command box. The user can press Ctrl+q to navigate to the latitude input box.
-Then, they can press enter from any input box to submit the respective input.
-For example, the user can press Ctrl+q to navigate to the latitude input box, press
-Tab to access the longitude input, then press enter to submit the geocode. The map
-will move accordingly.
+shortcuts added to the website. The user can press "Ctrl+b" to navigate to the input
+command box. Then, they can sumbit the command by pressing "Enter" on the keyboard.
+The user can press "Ctrl+q" to navigate to the latitude input box. Then, they can press 
+enter from any input box to submit the respective input. For example, the user can 
+press "Ctrl+q" to navigate to the latitude input box, press "Tab" to access the 
+longitude input, then press "Enter" to submit the geocode. The map will move accordingly.
 
 To use the backend directly, use the endpoints /redliningdata to access the entire
 geojson file. To search areas, use the endpoint /searchareas?keyword={keyword}.

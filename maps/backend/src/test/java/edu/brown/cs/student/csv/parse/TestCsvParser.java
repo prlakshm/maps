@@ -27,8 +27,8 @@ import org.junit.jupiter.api.Test;
  * BufferedReader, CreatorFromRow of T, Pattern, and StoreRows. It has methods parseCSV(), which
  * parses CSV data into the StoreRows field, and getStoreRows(), which allows access to that data.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestCsvParser {
   /**

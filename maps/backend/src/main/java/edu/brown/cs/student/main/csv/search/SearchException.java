@@ -4,8 +4,8 @@ package edu.brown.cs.student.main.csv.search;
  * This is an error to catch any error that occurs when searching for values in the CSV with
  * CsvSearcher.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class SearchException extends Exception {
 

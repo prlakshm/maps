@@ -31,6 +31,9 @@ import java.util.Random;
  * related to bounding box searches.
  *
  * The class contains JUnit tests for the BoundaryBoxHandler class.
+ * 
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestBoundaryBoxHandler {
   // Type definition for mapping JSON to a Map<String, Object>

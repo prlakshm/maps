@@ -65,7 +65,7 @@ export function REPLHistory(props: REPLHistoryProps) {
         Command History
       </h2>
 
-      {showInstructions && (
+      {showInstructions ? (
         <div className="instructions-dropdown">
           <p>Command Instructions:</p>
           <ul>
@@ -124,39 +124,39 @@ export function REPLHistory(props: REPLHistoryProps) {
               display history command and output
             </li>
             <li>
-              "<span style={{ color: "mediumorchid" }}>clear</span>" to
-              clear history
+              "<span style={{ color: "mediumorchid" }}>clear</span>" to clear
+              history
             </li>
           </ul>
         </div>
+      ) : (
+        <ul>
+          {commandHistory.map((command, index) => (
+            <div key={index} className="history-element">
+              <li>
+                {mode === "brief" ? (
+                  // Display in brief mode with only the output
+                  <div className="text-box" aria-live="polite">
+                    <p>
+                      Output:{" "}
+                      {renderData(commandResultMap.get(command) ?? "No data")}
+                    </p>
+                  </div>
+                ) : (
+                  // Display in verbose mode with both command and output
+                  <div className="text-box" aria-live="polite">
+                    <p>Command: {command.command}</p>
+                    <p>
+                      Output:{" "}
+                      {renderData(commandResultMap.get(command) ?? "No data")}
+                    </p>
+                  </div>
+                )}
+              </li>
+            </div>
+          ))}
+        </ul>
       )}
-
-      <ul>
-        {commandHistory.map((command, index) => (
-          <div key={index} className="history-element">
-            <li>
-              {mode === "brief" ? (
-                // Display in brief mode with only the output
-                <div className="text-box" aria-live="polite">
-                  <p>
-                    Output:{" "}
-                    {renderData(commandResultMap.get(command) ?? "No data")}
-                  </p>
-                </div>
-              ) : (
-                // Display in verbose mode with both command and output
-                <div className="text-box" aria-live="polite">
-                  <p>Command: {command.command}</p>
-                  <p>
-                    Output:{" "}
-                    {renderData(commandResultMap.get(command) ?? "No data")}
-                  </p>
-                </div>
-              )}
-            </li>
-          </div>
-        ))}
-      </ul>
     </div>
   );
 }

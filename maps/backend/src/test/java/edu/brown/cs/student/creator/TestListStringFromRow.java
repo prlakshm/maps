@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
  * This is a testing class that tests the ListStringFromRow class, which implements CreatorFromRow.
  * A ListStringFromRow instance keeps a list of string row as a list of string row.
  *
- * @author sarahridley juliazdzilowska
- * @version 1.0
+ * @author sarahridley juliazdzilowska prlakshm
+ * @version 3.0
  */
 public class TestListStringFromRow {
 
