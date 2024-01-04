@@ -20,6 +20,7 @@ import { ACCESS_TOKEN } from "../private/api.js"; // Import an API access token
 import "mapbox-gl/dist/mapbox-gl.css"; // Import Mapbox CSS
 import "../styles/map.css"; // Import custom styles
 import { geoLayer, overlayData } from "./overlay.js"; // Import custom overlay data and settings
+import axios from "axios"; //Import axios for reverse geocoding
 
 // Define interfaces for Mapbox features and responses
 interface MapboxFeature {
@@ -116,6 +117,12 @@ function Mapbox({ coordinates, setCoordinates }: MapBoxProps) {
     GeoJSON.FeatureCollection | undefined
   >(undefined);
 
+  // State for managing the tooltip displaying the county and state
+  const [tooltip, setTooltip] = useState<{
+    content: string;
+    position: [number, number];
+  } | null>(null);
+
   // Create a ref for the longitude input element
   const latitudeInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -191,12 +198,48 @@ function Mapbox({ coordinates, setCoordinates }: MapBoxProps) {
     }
   }, [coordinates]);
 
-  // Function to handle map click events
-  function onMapClick(e: MapLayerMouseEvent) {
-    console.log(e);
-    console.log(e.lngLat.lat);
-    console.log(e.lngLat.lng);
+  
+  // Function to handle map click events when want to see county, state
+async function onMapClick(e: MapLayerMouseEvent) {
+  try {
+    const { lng, lat } = e.lngLat;
+    const response = await axios.get(
+      `https://geo.fcc.gov/api/census/area?format=json&lat=${lat}&lon=${lng}`
+    );
+
+    const results = response.data.results;
+
+    if (results.length > 0) {
+      const result = results[0];
+      const countyName = result.county_name;
+      const stateName = result.state_name;
+
+       // Format county and state on separate lines
+       const countyStateInfo = `${countyName}, ${stateName}`;
+
+      // Convert the map coordinates to pixels
+      const coordinates = mapRef.current?.project([lng, lat]);
+      if (coordinates) {
+        const { x, y } = coordinates;
+
+        // Update tooltip state with content and position
+        setTooltip({
+          content: countyStateInfo,
+          position: [x, y],
+        });
+      }
+    } else {
+      console.log("No census county and state results found for the clicked location.");
+    }
+  } catch (error) {
+    console.error("Error fetching census county and state data:", error);
   }
+}
+
+  // Function to close the tooltip
+  const closeTooltip = () => {
+    setTooltip(null);
+  };
 
   // Function to handle geocoding based on input latitude and longitude
   function handleGeocode() {
@@ -340,6 +383,21 @@ function Mapbox({ coordinates, setCoordinates }: MapBoxProps) {
                 }}
               />
             </Source>
+          )}
+
+          {/* Tooltip */}
+          {tooltip && (
+            <div
+              className="tooltip"
+              style={{ left: tooltip.position[0], top: tooltip.position[1] }}
+            >
+              <p>
+                {tooltip.content}
+                <span className="close-tooltip" onClick={closeTooltip}>
+                  ×
+                </span>
+              </p>
+            </div>
           )}
         </Map>
       </div>

@@ -60,3 +60,26 @@ html, body {
     background-color: #0056b3;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 12px; /* Adjust the height */
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .tooltip p {
+    margin-top: 5px;
+    font-size: 14px; /* Adjust the font size */
+    font-weight: bold; /* Add font weight */
+  }
+  
+  .close-tooltip {
+    position: absolute;
+    top: 1px; /* Adjust the top position */
+    right: 5px; /* Adjust the right position */
+    cursor: pointer;
+    font-size: 18px; /* Adjust the font size */
+    color: #999; /* Adjust the color as needed */
+  }
