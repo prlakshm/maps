@@ -74,7 +74,7 @@ public class LoadCsvHandler implements Route {
       csvData.setData(rows);
       csvData.setLoaded(true);
       return new LoadSuccessResponse(csvFilePath).serialize();
-    } catch (FileNotFoundException fnfe) {
+    } catch (FileNotFoundException e) {
       return new LoadFailureResponse("error_datasource", "File not found", csvFilePath).serialize();
     } catch (Exception e) {
       return new LoadFailureResponse("error_bad_request", e.getMessage(), csvFilePath).serialize();
