@@ -5,6 +5,8 @@ import static spark.Spark.after;
 import com.google.common.cache.CacheBuilder;
 import edu.brown.cs.student.main.sources.AcsCensusSource;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import spark.Spark;
@@ -28,6 +30,7 @@ import spark.Spark;
 public class Server {
 
   static final int port = 4000;
+  static final String externalIpAddress = "23.22.28.100";
 
   /**
    * The constructor for the Server class.
@@ -37,6 +40,9 @@ public class Server {
     // CacheBuilder cacheBuilder = new CacheBuilder(); 
     // newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES); 
     CsvDataWrapper csvData = new CsvDataWrapper(new ArrayList<>(), false);
+
+    // Bind Spark to the external IP and port
+    Spark.ipAddress("0.0.0.0");
     Spark.port(port);
     after(
         (request, response) -> {
@@ -45,7 +51,7 @@ public class Server {
         });
 
     //actual geojson filepath
-    String filepath = "maps/backend/data/geojson/fullDownload.geojson";
+    String filepath = "data/geojson/fullDownload.geojson";
 
     // Setting up the handler for the GET /order and /mock endpoints
     Spark.get("loadcsv", new LoadCsvHandler(csvData));
@@ -70,6 +76,7 @@ public class Server {
    */
   public static void main(String[] args) {
     new Server();
-    System.out.println("Server started at http://localhost:" + port);
+    // Print the IP address and port after initialization
+    System.out.println("Server started at http://" + externalIpAddress + ":" + Spark.port());
   }
 }

@@ -39,8 +39,8 @@ public class TestSearchAreasHandler {
   // Number of trials for fuzz testing
   final static int TRIAL_LENGTH = 100;
   //filepaths to geojsons
-  final static String ACTUAL_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\fullDownload.geojson";
-  final static String MOCK_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\mocked.geojson";
+  final static String ACTUAL_PATH = "data\\geojson\\fullDownload.geojson";
+  final static String MOCK_PATH = "data\\geojson\\mocked.geojson";
 
   /**
    * Setup method executed before each test.

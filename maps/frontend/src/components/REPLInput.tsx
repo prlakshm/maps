@@ -114,7 +114,7 @@ export function REPLInput(props: REPLInputProps) {
     const filepath = args[0].trim();
     try {
       const response = await fetch(
-        `http://localhost:4000/loadcsv?filepath=${filepath}`
+        `http://23.22.28.100:4000/loadcsv?filepath=${filepath}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -140,7 +140,7 @@ export function REPLInput(props: REPLInputProps) {
       return "Invalid usage of 'view' command. Usage: view";
     }
     try {
-      const response = await fetch("http://localhost:4000/viewcsv");
+      const response = await fetch("http://23.22.28.100:4000/viewcsv");
       if (response.ok) {
         const data = await response.json();
         const resultMessage =
@@ -170,7 +170,7 @@ export function REPLInput(props: REPLInputProps) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/searchcsv?headers=${hasHeaders}&value=${value}&colid=${columnId}`
+        `http://23.22.28.100:4000/searchcsv?headers=${hasHeaders}&value=${value}&colid=${columnId}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -198,7 +198,7 @@ export function REPLInput(props: REPLInputProps) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/broadband?state=${state}&county=${county}`
+        `http://23.22.28.100:4000/broadband?state=${state}&county=${county}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -224,7 +224,7 @@ export function REPLInput(props: REPLInputProps) {
     const keyword = args[0].trim();
     try {
       const response = await fetch(
-        `http://localhost:4000/searchareas?keyword=${keyword}`
+        `http://23.22.28.100:4000/searchareas?keyword=${keyword}`
       );
       if (response.ok) {
         const data = await response.json();

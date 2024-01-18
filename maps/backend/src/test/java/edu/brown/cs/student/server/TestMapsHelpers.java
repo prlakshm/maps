@@ -10,11 +10,13 @@ import com.squareup.moshi.Moshi;
 import edu.brown.cs.student.main.maptypes.Feature;
 import edu.brown.cs.student.main.maptypes.FeatureCollection;
 import edu.brown.cs.student.main.server.BoundaryBoxHandler;
+import edu.brown.cs.student.main.server.LoadCsvHandler;
 import edu.brown.cs.student.main.server.SearchAreasHandler;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class TestMapsHelpers {
     final static int INDEX_UPPER_BOUND = 8878; // Size of geolength features in JSON
 
     //filepaths to geojsons
-    final static String ACTUAL_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\fullDownload.geojson";
+    final static String ACTUAL_PATH = "data\\geojson\\fullDownload.geojson";
     // Variables for test setup
     private static FeatureCollection featureCollection;
     private static BoundaryBoxHandler boundaryBoxHandler;
@@ -51,7 +53,11 @@ public class TestMapsHelpers {
     @BeforeAll
     public static void setupOnce() throws IOException {
         // Read the GEOJSON content from the file
-        String jsonContent = new String(Files.readAllBytes(Paths.get(ACTUAL_PATH)));
+        ClassLoader classLoader = TestMapsHelpers.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(ACTUAL_PATH);
+
+
+        String jsonContent = new String(inputStream.readAllBytes());
 
         // Build Moshi instance
         Moshi moshi = new Moshi.Builder().build();

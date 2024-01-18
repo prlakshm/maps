@@ -12,8 +12,23 @@ import java.util.Map;
  * This class is designed to be used for working with map-related data and provides accessors for the feature's attributes.
  * It also includes methods to retrieve immutable lists and maps to ensure data integrity.
  */
-public record Feature(String type, Geometry geometry, Properties properties) {
+public class Feature {
+  private String type;
+  private Geometry geometry;
+  private Properties properties;
 
+  // Getter methods for fields
+  public String getType(String type) {
+    return this.type;
+  }
+
+  public Geometry getGeometry() {
+    return this.geometry;
+  }
+
+  public Properties getProperties() {
+    return this.properties;
+  }
   public static class Geometry {
     private String type;
     private List<List<List<List<Double>>>> coordinates;

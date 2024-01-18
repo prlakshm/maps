@@ -1,0 +1,99 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="maps:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/maps_jar</output-path>
+    <root id="archive" name="maps.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/maps/backend/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="maps" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-client/9.4.31.v20200723/jetty-client-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-servlet/9.4.31.v20200723/websocket-servlet-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.6.0/kotlin-stdlib-jdk7-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.6.0/kotlin-stdlib-jdk8-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/testng/testng/7.9.0/testng-7.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-security/9.4.31.v20200723/jetty-security-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-http/9.4.31.v20200723/jetty-http-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib-common/1.4.20/kotlin-stdlib-common-1.4.20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/webjars/jquery/3.7.1/jquery-3.7.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.9.3/spark-core-2.9.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.18.0/error_prone_annotations-2.18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-io/9.4.31.v20200723/jetty-io-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.31.v20200723/websocket-server-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/moshi/moshi/1.13.0/moshi-1.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/moshi/moshi-adapters/1.13.0/moshi-adapters-1.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-servlet/9.4.31.v20200723/jetty-servlet-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-common/9.4.31.v20200723/websocket-common-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.31.v20200723/websocket-client-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/2.10.0/okio-2.10.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-webapp/9.4.31.v20200723/jetty-webapp-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.31.v20200723/websocket-api-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-server/9.4.31.v20200723/jetty-server-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/1.4.20/kotlin-stdlib-1.4.20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.9.0/gson-2.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/9.4.31.v20200723/jetty-util-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/beust/jcommander/1.82/jcommander-1.82.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-jdk14/2.0.0-alpha1/slf4j-jdk14-2.0.0-alpha1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-xml/9.4.31.v20200723/jetty-xml-9.4.31.v20200723.jar" path-in-jar="/" />
+      <element id="library" level="project" name="apache.maven.plugins.assembly.plugin" />
+      <element id="library" level="project" name="google.code.gson" />
+      <element id="library" level="project" name="Maven: com.beust:jcommander:1.82" />
+      <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.9.0" />
+      <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.18.0" />
+      <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0.1" />
+      <element id="library" level="project" name="Maven: com.google.guava:guava:32.1.2-jre" />
+      <element id="library" level="project" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+      <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:2.8" />
+      <element id="library" level="project" name="Maven: com.sparkjava:spark-core:2.9.3" />
+      <element id="library" level="project" name="Maven: com.squareup.moshi:moshi-adapters:1.13.0" />
+      <element id="library" level="project" name="Maven: com.squareup.moshi:moshi:1.13.0" />
+      <element id="library" level="project" name="Maven: com.squareup.okio:okio:2.10.0" />
+      <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+      <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy-agent:1.14.6" />
+      <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.14.6" />
+      <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.0.0" />
+      <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.33.0" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-client:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-common:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-server:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-servlet:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-client:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-security:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-servlet:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-webapp:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:9.4.31.v20200723" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.20" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.20" />
+      <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+      <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-api:5.4.0" />
+      <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.4.0" />
+      <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.4.0" />
+      <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-engine:1.4.0" />
+      <element id="library" level="project" name="Maven: org.mockito:mockito-core:5.5.0" />
+      <element id="library" level="project" name="Maven: org.objenesis:objenesis:3.3" />
+      <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.1.1" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.0-alpha1" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-jdk14:2.0.0-alpha1" />
+      <element id="library" level="project" name="Maven: org.testng:testng:7.8.0" />
+      <element id="library" level="project" name="Maven: org.testng:testng:7.9.0" />
+      <element id="library" level="project" name="Maven: org.webjars:jquery:3.6.1" />
+      <element id="library" level="project" name="Maven: org.webjars:jquery:3.7.1" />
+    </root>
+  </artifact>
+</component>

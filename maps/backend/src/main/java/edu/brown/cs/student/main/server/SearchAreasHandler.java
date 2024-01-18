@@ -17,6 +17,7 @@ import spark.Response;
 import spark.Route;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -74,7 +75,18 @@ public class SearchAreasHandler implements Route {
               .serialize();
     }
     try {
-      String jsonContent = new String(Files.readAllBytes(Paths.get(this.filepath)));
+      // Read the GEOJSON content from the file
+      ClassLoader classLoader = getClass().getClassLoader();
+      InputStream inputStream = classLoader.getResourceAsStream(this.filepath);
+
+      //Check geojson file in resource folder
+      if (inputStream == null) {
+        return new LoadCsvHandler.LoadFailureResponse(
+                "error_datasource", "File not found in resources: " + this.filepath, this.filepath)
+                .serialize();
+      }
+
+      String jsonContent = new String(inputStream.readAllBytes());
 
       Moshi moshi = new Moshi.Builder().build();
       JsonAdapter<FeatureCollection> adapter = moshi.adapter(FeatureCollection.class);
@@ -83,7 +95,7 @@ public class SearchAreasHandler implements Route {
 
       List<Feature> containedFeatures = new ArrayList<>();
       for (Feature feature : this.featureCollection.getFeatures()) {
-        Map<String, String> descriptions = feature.properties().getArea_description_data();
+        Map<String, String> descriptions = feature.getProperties().getArea_description_data();
         for (String description : descriptions.values()) {
           if (description.toLowerCase().contains(keyword.toLowerCase())) {
             containedFeatures.add(feature);
@@ -124,8 +136,8 @@ public class SearchAreasHandler implements Route {
     List<List<Double>> allCoordinates = new ArrayList<>();
 
     for (Feature feature : featureList) {
-      if (feature.geometry() != null) {
-        List<List<List<List<Double>>>> coordinates = feature.geometry().getCoordinates();
+      if (feature.getGeometry() != null) {
+        List<List<List<List<Double>>>> coordinates = feature.getGeometry().getCoordinates();
         for (List<List<List<Double>>> polygon : coordinates) {
           for (List<List<Double>> ring : polygon) {
             for (List<Double> point : ring) {

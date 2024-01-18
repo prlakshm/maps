@@ -27,7 +27,7 @@ body {
 .repl-history h2 {
   margin: 0; /* Remove top and bottom margin */
   text-align: center;
-  padding: 10px 0; /* Keep padding on top and bottom */
+  padding: 5px 9px; /* Keep padding on top and bottom */
 }
 
 .repl-history p {
@@ -44,6 +44,11 @@ body {
   margin-bottom: 5px; /* Add space between history items */
   padding: 5px; /* Add padding to each item */
   background-color: white; /* Light gray background */
+}
+
+.instructions-dropdown ul {
+  font-size: 15px; 
+  margin-bottom: -7.7px;
 }
 
 .repl-input {

@@ -12,6 +12,7 @@ import com.squareup.moshi.Moshi;
 import edu.brown.cs.student.main.maptypes.Feature;
 import edu.brown.cs.student.main.maptypes.FeatureCollection;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -76,8 +77,18 @@ public class BoundaryBoxHandler implements Route {
   @Override
   public Object handle(Request request, Response response) {
     try {
-      // Read GeoJSON data from file
-      String jsonContent = new String(Files.readAllBytes(Paths.get(this.filepath)));
+      // Read the GEOJSON content from the file
+      ClassLoader classLoader = getClass().getClassLoader();
+      InputStream inputStream = classLoader.getResourceAsStream(this.filepath);
+
+      //Check geojson file in resource folder
+      if (inputStream == null) {
+        return new LoadCsvHandler.LoadFailureResponse(
+                "error_datasource", "File not found in resources: " + this.filepath, this.filepath)
+                .serialize();
+      }
+
+      String jsonContent = new String(inputStream.readAllBytes());
 
       // Parse GeoJSON data using Moshi library
       Moshi moshi = new Moshi.Builder().build();
@@ -94,12 +105,12 @@ public class BoundaryBoxHandler implements Route {
 
       // Iterate over features and check if they are within the bounding box
       for (Feature feature : collection.getFeatures()) {
-        if (feature.geometry() == null) {
+        if (feature.getGeometry() == null) {
           continue;
         }
 
         // Extract the coordinates of the feature's geometry
-        List<List<List<List<Double>>>> coordinates = feature.geometry().getCoordinates();
+        List<List<List<List<Double>>>> coordinates = feature.getGeometry().getCoordinates();
 
         // Check if any coordinate point falls within the bounding box
         if (isFeatureWithinBoundingBox(coordinates, minLat, maxLat, minLon, maxLon)) {

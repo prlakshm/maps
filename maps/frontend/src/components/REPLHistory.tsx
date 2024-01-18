@@ -67,11 +67,15 @@ export function REPLHistory(props: REPLHistoryProps) {
 
       {showInstructions ? (
         <div className="instructions-dropdown">
-          <p>Command Instructions:</p>
+          <p style={{paddingBottom: "4px"}}>Command Instructions:</p>
           <ul>
             <li>
               "<span style={{ color: "mediumorchid" }}>load [filepath]</span>"{" "}
-              to load csv file
+              to load csv (ex. "
+              <span style={{ color: "mediumorchid" }}>
+                load data/custom/zillow.csv
+              </span>
+              ")
             </li>
             <li>
               {" "}
@@ -83,7 +87,7 @@ export function REPLHistory(props: REPLHistoryProps) {
               <span style={{ color: "mediumorchid" }}>
                 search [has_headers] [search_val] [col_name/col_index]
               </span>
-              " to search a specific column where has_headers is "true" or
+              " to search specific column where has_headers is "true" or
               "false"
             </li>
             <li>
@@ -98,7 +102,14 @@ export function REPLHistory(props: REPLHistoryProps) {
               <span style={{ color: "mediumorchid" }}>
                 broadband [state] [county]
               </span>
-              " to get broadband access percent county in state
+              " to get broadband access percent (ex. "
+              <span style={{ color: "mediumorchid" }}>
+                broadband North_Carolina Durham
+              </span>
+              ", "
+              <span style={{ color: "mediumorchid" }}>
+                broadband California Orange
+              </span>")
             </li>
             <li>
               "

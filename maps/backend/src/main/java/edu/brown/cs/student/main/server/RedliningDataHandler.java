@@ -8,10 +8,15 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.JsonDataException;
 import com.squareup.moshi.Moshi;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import edu.brown.cs.student.main.maptypes.Feature;
 import edu.brown.cs.student.main.maptypes.FeatureCollection;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -76,14 +81,21 @@ public class RedliningDataHandler implements Route {
   @Override
   public Object handle(Request request, Response response) {
     try {
-
       // Read the GEOJSON content from the file
-      String jsonContent = new String(Files.readAllBytes(Paths.get(this.filepath)));
+      ClassLoader classLoader = getClass().getClassLoader();
+      InputStream inputStream = classLoader.getResourceAsStream(this.filepath);
+
+      //Check geojson file in resource folder
+      if (inputStream == null) {
+        return new LoadCsvHandler.LoadFailureResponse(
+                "error_datasource", "File not found in resources: " + this.filepath, this.filepath)
+                .serialize();
+      }
+
+      String jsonContent = new String(inputStream.readAllBytes());
 
       Moshi moshi = new Moshi.Builder().build();
       JsonAdapter<FeatureCollection> adapter = moshi.adapter(FeatureCollection.class);
-
-      // Deserialize the GEOJSON content into a FeatureCollection
       FeatureCollection collection = adapter.fromJson(jsonContent);
       this.featureCollection = collection;
       String cacheKey = "unique_cache_key";
@@ -93,6 +105,7 @@ public class RedliningDataHandler implements Route {
         return handleCacheMiss(this.featureCollection);
       }
       return cache.get().get(cacheKey);
+
     } catch (IOException e) {
       // Handle an error when the file cannot be parsed
       return new RedliningDataHandler.RedlineFailureResponse(

@@ -31,8 +31,8 @@ public class TestRedliningDataHandler {
   // JSON adapter for parsing response bodies
   private JsonAdapter<Map<String, Object>> adapter;
   //filepaths to geojsons
-  final static String ACTUAL_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\fullDownload.geojson";
-  final static String MOCK_PATH = "C:\\Users\\prana\\OneDrive\\Documents\\GitHub\\maps\\maps\\backend\\data\\geojson\\mocked.geojson";
+  final static String ACTUAL_PATH = "data\\geojson\\fullDownload.geojson";
+  final static String MOCK_PATH = "data\\geojson\\mocked.geojson";
 
   /**
    * Setup method executed before each test.
