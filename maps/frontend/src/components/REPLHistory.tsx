@@ -67,7 +67,7 @@ export function REPLHistory(props: REPLHistoryProps) {
 
       {showInstructions && (
         <div className="instructions-dropdown">
-          <p style={{paddingBottom: "4px"}}>Command Instructions:</p>
+          <p style={{ paddingBottom: "4px" }}>Command Instructions:</p>
           <ul>
             <li>
               "<span style={{ color: "mediumorchid" }}>load [filepath]</span>"{" "}
@@ -87,8 +87,7 @@ export function REPLHistory(props: REPLHistoryProps) {
               <span style={{ color: "mediumorchid" }}>
                 search [has_headers] [search_val] [col_name/col_index]
               </span>
-              " to search specific column where has_headers is "true" or
-              "false"
+              " to search specific column where has_headers is "true" or "false"
             </li>
             <li>
               "
@@ -109,7 +108,8 @@ export function REPLHistory(props: REPLHistoryProps) {
               ", "
               <span style={{ color: "mediumorchid" }}>
                 broadband California Orange
-              </span>")
+              </span>
+              ")
             </li>
             <li>
               "
@@ -147,28 +147,24 @@ export function REPLHistory(props: REPLHistoryProps) {
             <div key={index} className="history-element">
               <li>
                 {mode === "brief" ? (
-                  // Display in brief mode with only the output
                   <div className="text-box" aria-live="polite">
-                    <p>
-                      Output:{" "}
-                      {renderData(commandResultMap.get(command) ?? "No data")}
-                    </p>
+                    Output:{" "}
+                    {renderData(commandResultMap.get(command) ?? "No data")}
                   </div>
                 ) : (
-                  // Display in verbose mode with both command and output
                   <div className="text-box" aria-live="polite">
                     <p>Command: {command.command}</p>
-                    <p>
+                    <div>
                       Output:{" "}
                       {renderData(commandResultMap.get(command) ?? "No data")}
-                    </p>
+                    </div>
                   </div>
                 )}
               </li>
             </div>
           ))}
         </ul>
-    </div>
+      </div>
     </div>
   );
 }
