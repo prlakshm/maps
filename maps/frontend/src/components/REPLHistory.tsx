@@ -65,7 +65,7 @@ export function REPLHistory(props: REPLHistoryProps) {
         Command History
       </h2>
 
-      {showInstructions ? (
+      {showInstructions && (
         <div className="instructions-dropdown">
           <p style={{paddingBottom: "4px"}}>Command Instructions:</p>
           <ul>
@@ -140,7 +140,8 @@ export function REPLHistory(props: REPLHistoryProps) {
             </li>
           </ul>
         </div>
-      ) : (
+      )}
+      <div>
         <ul>
           {commandHistory.map((command, index) => (
             <div key={index} className="history-element">
@@ -167,7 +168,7 @@ export function REPLHistory(props: REPLHistoryProps) {
             </div>
           ))}
         </ul>
-      )}
+    </div>
     </div>
   );
 }

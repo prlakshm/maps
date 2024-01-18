@@ -1,7 +1,7 @@
 {
   "name": "maps-sprint-5",
   "private": true,
-  "version": "0.1.0",
+  "version": "3.0.0",
   "homepage": "https://prlakshm.github.io/maps",
   "type": "module",
   "scripts": {
