@@ -30,7 +30,6 @@ import spark.Spark;
 public class Server {
 
   static final int port = 4000;
-  static final String externalIpAddress = "23.22.28.100";
 
   /**
    * The constructor for the Server class.
@@ -77,6 +76,6 @@ public class Server {
   public static void main(String[] args) {
     new Server();
     // Print the IP address and port after initialization
-    System.out.println("Server started at http://" + externalIpAddress + ":" + Spark.port());
+    System.out.println("Server started at https://cs32customserver.com/repl/");
   }
 }
