@@ -1,0 +1,44 @@
+{
+  "hash": "f09c6681",
+  "browserHash": "c77c1ffc",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "7919d614",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "5a17d666",
+      "needsInterop": true
+    },
+    "react-map-gl": {
+      "src": "../../node_modules/react-map-gl/dist/esm/index.js",
+      "file": "react-map-gl.js",
+      "fileHash": "a2fef4d8",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "75fa7c94",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-2MRMY2VI": {
+      "file": "chunk-2MRMY2VI.js"
+    },
+    "chunk-6DDWND5A": {
+      "file": "chunk-6DDWND5A.js"
+    },
+    "mapbox-gl-D2RGKJUQ": {
+      "file": "mapbox-gl-D2RGKJUQ.js"
+    },
+    "chunk-4EOJPDL2": {
+      "file": "chunk-4EOJPDL2.js"
+    }
+  }
+}
