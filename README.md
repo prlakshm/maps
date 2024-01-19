@@ -185,7 +185,8 @@ The user can also input 'broadband' to find the broadband percent from the state
 and county. The output will also showed the time and date of the cached result. 
 This time is in UTC (universal time), not the local timezone. The cache will last
 for 10 minutes to optimize backend server heap space. Lastly, the user can 'searchareas'
-by a keyword to search for areas with that keyword in the area description. From this, 
+by a keyword or to search for areas with that keyword in the area description. You can 
+also serach by a phrase by using an underscore "_" to seperate the keywords. From this, 
 the map will move to show the highlighted areas. If there are no areas with the keyword, 
 the map will zoom out to the globe to show the user that there are no highlighted dots 
 (no areas match).
@@ -203,7 +204,7 @@ longitude input, then press "Enter" to submit the geocode. The map will move acc
 
 To use the backend directly, use the endpoints /redliningdata to access the entire
 geojson file. To search areas, use the endpoint /searchareas?keyword={keyword}.
-This will return all the coordinates that match this keyword. To search for all
+This will return all the coordinates that match this keyword or keywords. To search for all
 the features in a boundary box, use the endpoint /boundarybox?minLat={minLat}&maxLat={maxLat}&
 minLng={minLng}&maxLng={maxLng}. All endpoint handlers are cached (except for the csv
 handlers), so the timestamp from the first instance of the particular search query will
