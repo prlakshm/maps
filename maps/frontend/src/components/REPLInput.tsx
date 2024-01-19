@@ -221,7 +221,7 @@ export function REPLInput(props: REPLInputProps) {
     if (args.length !== 1) {
       return "Invalid usage of 'searchareas' command. Usage: searchareas <keyword>";
     }
-    const keyword = args[0].trim();
+    const keyword = args[0].trim().replace(/_/g, " ");
     try {
       const response = await fetch(
         `https://cs32customserver.com/maps/searchareas?keyword=${keyword}`
@@ -232,7 +232,7 @@ export function REPLInput(props: REPLInputProps) {
 
         const resultMessage =
           data.result === "success"
-            ? "Areas descriptions with " + keyword + " highlighted successfully"
+            ? "Areas descriptions with \"" + keyword + "\" highlighted successfully"
             : data.error_message;
         return resultMessage;
       } else return "Failed to fetch areas from the backend";

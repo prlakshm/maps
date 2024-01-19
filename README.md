@@ -89,7 +89,7 @@ This class represents a feature in a map and includes information about its type
 
 ### 2. Errors/Bugs:
 
-Though we extensivly tested out code, there are some bugs that were beyond our expertise to fix. The backend server can be easily overloaded. Because of this, we recommend typing simple commands into the input box. We also could not support the "searchareas" command for keywords with spaces.
+Though we extensivly tested out code, there are some bugs that were beyond our expertise to fix. The backend server can be easily overloaded. Because of this, we recommend typing simple commands into the input box. 
 
 **IMPORTANT: The API handling county and state geolocation requests can be overloaded if there are too many frequent clicks on the map. Because of this, the tooltip might not always appear or take a while to appear if there are too many consecutive clicks. A message prints to cosole when a location is clicked without a county associated (ex. water mass clicked).**
 
