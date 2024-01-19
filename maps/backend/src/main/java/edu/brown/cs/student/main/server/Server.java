@@ -76,6 +76,6 @@ public class Server {
   public static void main(String[] args) {
     new Server();
     // Print the IP address and port after initialization
-    System.out.println("Server started at https://cs32customserver.com/repl/");
+    System.out.println("Server started at https://cs32customserver.com/maps/");
   }
 }

@@ -4,17 +4,33 @@
 
 **Team Members and Contributions:** 
 <br>Thalia Bonas (frontend) 
-<br>Pranavi Lakshminarayanan (frontend and backend) 
+<br>Pranavi Lakshminarayanan (frontend, backend, and deployment) 
 <br>Julia Zdzilowska (frontend and backend)
 <br>Sarah Ridley (backend)
 
 <br>**Link to Deployed Webpage:** https://prlakshm.github.io/maps/
 
-<br>**Estimated Completion Time:** 40 hours
+<br>**Estimated Completion Time:** 45 hours
 
 ### 1. Functionality/Design
 
-Our program is divided into two separate packages, our frontend and our backend. For our backend implementation, we used, and built upon our code from the Server Project, the breakdown of which is explained below. For our front end, we built off of our the gearup for this sprint, adding functionality for user stoies 1 and 2. The core components of our front end are outlined below.
+Our program is divided into two separate packages, our frontend and our backend. For our backend implementation, we used, and built upon our code from the Server Project, the breakdown of which is explained below. The backend server is run using an AWS ubuntu ec2 instance and nginx. The server can be accessed directly at https://cs32customserver.com/maps/. From here, you can access the endpoints:
+
+>"loadcsv?filepath=[filepath]" to load csv
+
+>"viewcsv" to view csv
+
+>"searchcsv?hasHeaders=[true/false]&value=[search_val]&colId=[column_name/column_index/*]" to search specific column or * for all
+
+>"broadband?state=[state]&county=[county]" to retrieve broadband access percent
+
+>"redliningdata" to view all geojson data
+
+>"searchareas?keyword=[keyword]" to search area descriptions by keyword and get coordinates as output
+
+>boundarybox?maxLat=[max_latitude]&minLat=[min_latitude]&maxLng=[max_longitude]&minLng=[min_longitude]
+
+For our front end, we built off of our the gearup for this sprint, adding functionality for user stories 1 and 2. The core components of our front end are outlined below.
 
 Our Front end consists of the following files, their purpose and relationships are outlines briefly below:
 
@@ -42,7 +58,7 @@ REPL.tsx:
 This part defines a React component called REPL that provides a Read-Eval-Print Loop (REPL) interface for users to input commands, display command history, and view the results of each command. It manages the history, display mode, and command results. This component renders two subcomponents: REPLHistory and REPLInput.
 
 REPLHistory.tsx:
-This component displays the command history and corresponding results. It has options to display in either "brief" or "verbose" mode. It receives a list of history items, a display mode, a map of command results, and an ARIA label as props. There is also an option to view all the possible commands upon clicking on the "Command History " header.
+This component displays the command history and corresponding results. It has options to display in either "brief" or "verbose" mode. It receives a list of history items, a display mode, a map of command results, and an ARIA label as props. There is also an option to view all the possible commands upon clicking on the "Command History " header. You can still scroll from the command instructions to see the history elements.
 
 REPLInput.tsx:
 This component handles user input and executes commands. It allows users to enter commands and has options to change the display mode. It also registers various commands and processes user input accordingly.
@@ -53,7 +69,7 @@ useState hooks includes:
 
 In App.tsx, where we used the useState hook to manage the coordinates state, which represents the geographic coordinates selected by the user. In ControlledInput.tsx, a useState hook is employed to bind the input value to the provided value prop.
 
-In Mapbox.tsx, we used a useState hook to manage the map view state, overlay data, latitude and longitude inputs, and highlighted coordinates.
+In Mapbox.tsx, we used a useState hook to manage the map view state, overlay data, latitude and longitude inputs, and highlighted coordinates. You can also view the state and county you clicked from a request to the FCC Area API.
 
 We also included aria labels throughout our code, such as in ControlledInput and REPLHistory to enhance user accessibility. We included keyboard shortcuts, such as submitting a command by pressing "Enter" and navigating to the command input by clicking "Ctrl+b". You can navigate to the latitude input by pressing "Ctrl+q", press "Tab" to navigate to the longitude input, then press "Enter" to submit the coordinates.
 
@@ -63,19 +79,19 @@ the application, promoting clean and maintainable code. Efficiently updating the
 command history and UI in response to user actions, minimized unnecessary
 re-renders and data processing.
 
-An explanation of our design choices for our backend package is written below. Our functionality and design is adopting from our server project. Thus, the following explanantions are just for the classes we added for this sprint to our server package. Overall, the classes we added handle HTTP requests, deserializing GEOJSON data, optionally caching results, and responding with success or error messages. The code uses Guava's CacheBuilder for caching and Moshi for JSON deserialization. It is designed to efficiently handle GEOJSON data and search queries.
+An explanation of our design choices for our backend package is written below. Our functionality and design is adopting from our server project. Thus, the following explanantions are just for the classes we added for this sprint to our server package. Overall, the classes we added handle HTTPS requests, deserializing GEOJSON data, optionally caching results, and responding with success or error messages. The code uses Guava's CacheBuilder for caching and Moshi for JSON deserialization. It is designed to efficiently handle GEOJSON data and search queries.
 
 BoundaryBoxHandler.java
-This class handles HTTP requests related to bounding box queries on GEOJSON data. It extracts features within a specified bounding box and can optionally cache the results. The class uses lists and optional caching with Guava's CacheBuilder. Caching is also implemented to optimize runtime performance by avoiding redundant calculations when the same bounding box is queried multiple times.
+This class handles HTTPS requests related to bounding box queries on GEOJSON data. It extracts features within a specified bounding box and can optionally cache the results. The class uses lists and optional caching with Guava's CacheBuilder. Caching is also implemented to optimize runtime performance by avoiding redundant calculations when the same bounding box is queried multiple times.
 
 JsonReader.java
 This class provides a generic way to read and deserialize JSON strings into Java objects using the Moshi library. This class uses the Moshi library to parse JSON strings into Java objects. It acts as a generic class to support deserialization of various Java object types from JSON.
 
 RedliningDataHandler.java:
-This class handles HTTP requests related to loading and caching GEOJSON data for redlining analysis. It loads GEOJSON data and optionally caches it. This class uses Guava's CacheBuilder for optional caching. Deserializes GEOJSON data using Moshi. Implements a caching mechanism to store and retrieve GEOJSON data for redlining analysis.Caching is implemented throughout the class to optimize runtime performance by avoiding redundant data loading when the same data is requested multiple times.
+This class handles HTTPS requests related to loading and caching GEOJSON data for redlining analysis. It loads GEOJSON data and optionally caches it. This class uses Guava's CacheBuilder for optional caching. Deserializes GEOJSON data using Moshi. Implements a caching mechanism to store and retrieve GEOJSON data for redlining analysis.Caching is implemented throughout the class to optimize runtime performance by avoiding redundant data loading when the same data is requested multiple times.
 
 SearchAreasHandler.java:
-This class handles HTTP requests related to searching areas in GEOJSON data based on a provided keyword. It extracts features that match the keyword and can optionally cache the results. The class uses Guava's CacheBuilder for optional caching, deserializes GEOJSON data using Moshi and implements a caching mechanism to store and retrieve search results based on the keyword.
+This class handles HTTPS requests related to searching areas in GEOJSON data based on a provided keyword. It extracts features that match the keyword and can optionally cache the results. The class uses Guava's CacheBuilder for optional caching, deserializes GEOJSON data using Moshi and implements a caching mechanism to store and retrieve search results based on the keyword.
 
 We also created a maps package which contained the following classes for the maps portion of our code. Overall, these classes are designed to represent map features and collections of map features while enforcing data immutability to maintain data integrity. The use of Java's Collections.unmodifiableList and Collections.unmodifiableMap makes the data structures immutable, which is a good practice to prevent unintended changes to the data.
 
@@ -87,9 +103,9 @@ This class represents a feature in a map and includes information about its type
 
 ### 2. Errors/Bugs:
 
-Based on extensive testing there are currently no known bugs in our code.
+Though we extensivly tested out code, there are some bugs that were beyond our expertise to fix. The backend server can be easily overloaded. Because of this, we recommend typing simple commands into the input box. We also could not support the "searchareas" command for keywords with spaces.
 
-**IMPORTANT: The API handling county and state geolocation requests can be overloaded if there are too many frequent clicks on the map. Because of this, the tooltip might not always appear or take a while to appear if there are too many consecutive clicks.**
+**IMPORTANT: The API handling county and state geolocation requests can be overloaded if there are too many frequent clicks on the map. Because of this, the tooltip might not always appear or take a while to appear if there are too many consecutive clicks. A message prints to cosole when a location is clicked without a county associated (ex. water mass clicked).**
 
 
 ### 3. Testing:
@@ -170,22 +186,23 @@ check the outputs because it is controlled data.
 
 ### 4. Build and Run:
 
-Upon inputting the command 'npm run dev' into the terminal, the user can utilize
-the Mock Application. Also run the backend server class and navigate to the url
-of the server displayed. The user will be prompted to input a command of their
-choice into the command line. The user can input the command 'mode brief' or 'mode
-verbose' to change the mode of the application. The user can input the command
-'load' to load a csv file into the application. The user can input the
-command 'view' to view the loaded csv file. The user can input the command 'search'
-to search for a term in the loaded csv file. They can clear the command history 
-using the "clear" command. The user can also register new commands using the 'register' 
-command.
+Upon inputting the command 'npm run dev' into the terminal, the user can utilize the Mock Application. The backend is run at https://cs32customserver.com/maps/. To run the server on localhost, run the backend server class and navigate to localhost:4000. 
 
+The user will be prompted to input a command of their choice into the command line. 
+The user can input the command 'mode brief' or 'mode verbose' to change the mode of the 
+application. The user can input the command 'load' to load a csv file into the 
+application. The user can input the command 'view' to view the loaded csv file. The 
+user can input the command 'search' to search for a term in the loaded csv file. 
+They can clear the command history using the "clear" command. The user can also 
+register new commands using the 'register' command.
 The user can also input 'broadband' to find the broadband percent from the state
-and county. Lastly, the user can 'searchareas' by a keyword to search for areas
-with that keyword in the area description. From this, the map will move to show
-the highlighted areas. If there are no areas with the keyword, the map will zoom
-out to the globe to show the user that there are no highlighted dots (no areas match).
+and county. The output will also showed the time and date of the cached result. 
+This time is in UTC (universal time), not the local timezone. The cache will last
+for 10 minutes to optimize backend server heap space. Lastly, the user can 'searchareas'
+by a keyword to search for areas with that keyword in the area description. From this, 
+the map will move to show the highlighted areas. If there are no areas with the keyword, 
+the map will zoom out to the globe to show the user that there are no highlighted dots 
+(no areas match).
 
 A user can view all possible commands by clicking on the "Command History" header. They
 can close the command instructions by reclicking the header. 
@@ -222,7 +239,7 @@ Mapbox: Mapbox is a mapping platform used for rendering interactive maps. In thi
 
 Moshi: Moshi is a JSON library for Android and Java applications. In this code, Moshi is used in the BoundaryBoxHandler and GEOJsonHandler classes to parse and deserialize JSON data. It's employed to convert raw JSON content into Java objects, specifically FeatureCollection objects, which are used for further processing.
 
-Spark: Spark is a micro web framework for building web applications in Java. In this capstone, it's used for the back-end server, handling incoming HTTP requests and responses in the BoundaryBoxHandler class and the GEOJsonHandler class. Here, Spark is used to handle incoming HTTP requests, read data files, and respond with data or error messages. It enables the creation of API endpoints for data retrieval and manipulation.
+Spark: Spark is a micro web framework for building web applications in Java. In this capstone, it's used for the back-end server, handling incoming HTTPS requests and responses in the BoundaryBoxHandler class and the GEOJsonHandler class. Here, Spark is used to handle incoming HTTPS requests, read data files, and respond with data or error messages. It enables the creation of API endpoints for data retrieval and manipulation.
 
 "mapbox-gl": This is a JavaScript library specifically for Mapbox that provides tools for rendering and interacting with maps on the client side. It allows for the customization and display of geospatial data, ie styles, layers and data sources for the map.
 
