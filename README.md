@@ -14,21 +14,7 @@
 
 ### 1. Functionality/Design
 
-Our program is divided into two separate packages, our frontend and our backend. For our backend implementation, we used, and built upon our code from the Server Project, the breakdown of which is explained below. The backend server is run using an AWS ubuntu ec2 instance and nginx. The server can be accessed directly at https://cs32customserver.com/maps/. From here, you can access the endpoints:
-
->"loadcsv?filepath=[filepath]" to load csv
-
->"viewcsv" to view csv
-
->"searchcsv?hasHeaders=[true/false]&value=[search_val]&colId=[column_name/column_index/*]" to search specific column or * for all
-
->"broadband?state=[state]&county=[county]" to retrieve broadband access percent
-
->"redliningdata" to view all geojson data
-
->"searchareas?keyword=[keyword]" to search area descriptions by keyword and get coordinates as output
-
->boundarybox?maxLat=[max_latitude]&minLat=[min_latitude]&maxLng=[max_longitude]&minLng=[min_longitude]
+Our program is divided into two separate packages, our frontend and our backend. For our backend implementation, we used, and built upon our code from the Server Project, the breakdown of which is explained below. The backend server is run using an AWS ubuntu ec2 instance and nginx. The server can be accessed directly at https://cs32customserver.com/maps/. 
 
 For our front end, we built off of our the gearup for this sprint, adding functionality for user stories 1 and 2. The core components of our front end are outlined below.
 
