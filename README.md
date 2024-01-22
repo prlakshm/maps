@@ -1,6 +1,6 @@
-# maps-prlakshm-tbonas
+# Maps
 
-**Project Name:** Maps
+**Project Name:** Maps Sprint 5
 
 **Team Members and Contributions:** 
 <br>Thalia Bonas (frontend) 
