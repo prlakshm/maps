@@ -1,6 +1,6 @@
-# Maps
+# Maps README
 
-**Project Name:** Maps Sprint 5
+**Project Name:** Maps 
 
 **Team Members and Contributions:** 
 <br>Thalia Bonas (frontend) 
